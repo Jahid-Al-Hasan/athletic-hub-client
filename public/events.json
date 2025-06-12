@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9001",
+    "name": "Annual Marathon",
+    "date": "2023-11-15T08:00:00Z",
+    "location": "Central Park, New York",
+    "description": "Join our 10k marathon through scenic Central Park",
+    "image": "https://images.unsplash.com/photo-1574629810360-7efbbe195018",
+    "category": "Running",
+    "price": 25,
+    "capacity": 1000,
+    "organizer": "City Sports Association"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9002",
+    "name": "Beach Volleyball Tournament",
+    "date": "2023-11-20T09:30:00Z",
+    "location": "Santa Monica Beach, LA",
+    "description": "2-day competitive beach volleyball tournament",
+    "image": "https://images.unsplash.com/photo-1543357486-c250e0c2d6d0",
+    "category": "Volleyball",
+    "price": 40,
+    "capacity": 32,
+    "organizer": "California Volleyball League"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9003",
+    "name": "Mountain Bike Challenge",
+    "date": "2023-11-25T07:00:00Z",
+    "location": "Rocky Mountains, Colorado",
+    "description": "Extreme mountain biking through challenging terrain",
+    "image": "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+    "category": "Cycling",
+    "price": 75,
+    "capacity": 50,
+    "organizer": "Rocky Mountain Adventures"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9004",
+    "name": "Yoga in the Park",
+    "date": "2023-12-02T06:30:00Z",
+    "location": "Golden Gate Park, SF",
+    "description": "Morning yoga session with certified instructors",
+    "image": "https://images.unsplash.com/photo-1545389336-cf090694435e",
+    "category": "Wellness",
+    "price": 15,
+    "capacity": 100,
+    "organizer": "Mind & Body Collective"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9005",
+    "name": "Swim Competition",
+    "date": "2023-12-10T10:00:00Z",
+    "location": "Olympic Pool, Chicago",
+    "description": "Regional swimming competition for all ages",
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
+    "category": "Swimming",
+    "price": 30,
+    "capacity": 200,
+    "organizer": "Midwest Swim Association"
+  },
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9006",
+    "name": "Basketball Showdown",
+    "date": "2023-12-15T18:00:00Z",
+    "location": "Madison Square Garden, NY",
+    "description": "Professional exhibition basketball game",
+    "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+    "category": "Basketball",
+    "price": 65,
+    "capacity": 18000,
+    "organizer": "NBA Events"
+  }
+]
