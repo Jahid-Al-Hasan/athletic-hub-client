@@ -10,10 +10,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { AuthContext } from "../../provider/AuthContext";
 
 const Navbar = () => {
-  const user = true;
+  const { user } = useContext(AuthContext);
   const { theme, setTheme } = useContext(ThemeContext);
+
+  console.log(user);
 
   const links = (
     <>
