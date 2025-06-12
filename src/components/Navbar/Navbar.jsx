@@ -1,6 +1,6 @@
 import { Menu, Moon, Sun, User } from "lucide-react";
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { ThemeContext } from "../../provider/ThemeContext";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { AuthContext } from "../../provider/AuthContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const { theme, setTheme } = useContext(ThemeContext);
-
-  console.log(user);
+  const navigate = useNavigate();
 
   const links = (
     <>
@@ -81,6 +81,17 @@ const Navbar = () => {
 
   const handleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const handleLogout = () => {
+    logOut().then(() => {
+      Swal.fire({
+        title: "Logout successfully",
+        icon: "success",
+        draggable: true,
+      });
+      navigate(location?.state || "/");
+    });
   };
 
   return (
@@ -168,7 +179,9 @@ const Navbar = () => {
                     <Link to="/manage-events">Manage Events</Link>
                   </DropdownMenuItem>
                 )}
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -17,12 +16,13 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { Loading } from "../../components/Loading/Loading";
 import Swal from "sweetalert2";
 
-const Login = () => {
-  const { user, signInWithGoogle, loginUser, loading } =
+const Register = () => {
+  const { user, signInWithGoogle, createUser, profileUpdate, loading } =
     useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,13 +35,22 @@ const Login = () => {
     navigate(location?.state || "/");
   }
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
+    const photoURL = e.target.photoUrl.value;
 
-    loginUser(email, password)
+    createUser(email, password)
       .then(() => {
+        // profile update/create new
+        if (name || photoURL) {
+          profileUpdate(name, photoURL)
+            .then()
+            .catch((err) => {
+              console.log(err);
+            });
+        }
         Swal.fire({
-          title: "Login successfully",
+          title: "Register successfully",
           icon: "success",
           draggable: true,
         });
@@ -49,11 +58,10 @@ const Login = () => {
       })
       .catch((err) => {
         Swal.fire({
-          title: "User name or Password is not correct",
+          title: `${err.message}`,
           icon: "error",
-          draggable: true,
         });
-        console.log(err.message);
+        console.log(err);
       });
   };
 
@@ -81,15 +89,41 @@ const Login = () => {
     <div className="flex items-center justify-center min-h-[calc(100vh-65px)]">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Log in to your account</CardTitle>
+          <CardTitle>Create new account</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Enter valid information to create your account
           </CardDescription>
         </CardHeader>
 
         {/* Email/Password Form */}
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleRegister} className="space-y-4">
+            {/* name */}
+            <div>
+              <Label htmlFor="name" className="mb-2">
+                Name
+              </Label>
+              <Input
+                type="text"
+                id="name"
+                placeholder="your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            {/* phpto url */}
+            <div>
+              <Label htmlFor="photoUrl" className="mb-2">
+                Photo Url
+              </Label>
+              <Input
+                type="text"
+                id="photoUrl"
+                placeholder="https://...."
+                required
+              />
+            </div>
             {/* email */}
             <div>
               <Label htmlFor="email" className="mb-2">
@@ -118,6 +152,8 @@ const Login = () => {
                 className="pl-10 pr-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$"
+                title="Password should be at least 8 characters and include 1 uppercase, 1 lowercase, and a special character"
                 required
               />
 
@@ -136,15 +172,6 @@ const Login = () => {
                 )}
               </button>
             </div>
-
-            <Label>
-              <Link
-                to="/forgot-password"
-                className="label-text-alt link link-hover"
-              >
-                Forgot password?
-              </Link>
-            </Label>
             <Button type="submit" className="w-full">
               Login
             </Button>
@@ -184,13 +211,13 @@ const Login = () => {
         </CardFooter>
         <div className="text-center mt-4">
           <p className="text-sm">
-            Don't have an account?
-            <Link to="/signup">
+            Already have an account?
+            <Link to="/login">
               <Button
                 className="cursor-pointer text-accent-500 font-bold"
                 variant="link"
               >
-                Sign Up
+                Sign in
               </Button>
             </Link>
           </p>
@@ -200,4 +227,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
