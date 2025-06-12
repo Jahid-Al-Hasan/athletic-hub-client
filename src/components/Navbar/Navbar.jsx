@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="navbar px-2 sm:px-8 bg-transparent">
+      <div className="navbar px-2 sm:px-8">
         {/* Mobile menu button */}
         <div className="navbar-start">
           <div className="dropdown">
@@ -59,23 +59,9 @@ const Navbar = () => {
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl px-0">
             <div className="flex items-center">
-              <div className="text-primary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <span className="ml-2">Athletic Hub</span>
+              <h2 className="text-2xl font-bold flex items-center">
+                <span className="text-primary">Athletic</span>Hub
+              </h2>
             </div>
           </Link>
         </div>
