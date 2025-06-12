@@ -2,6 +2,14 @@ import { Menu, Moon, Sun, User } from "lucide-react";
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { ThemeContext } from "../../provider/ThemeContext";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const user = true;
@@ -9,24 +17,59 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/events">Events</NavLink>
-      </li>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          `text-sm font-medium transition-colors hover:text-primary ${
+            isActive ? "text-primary" : "text-muted-foreground"
+          }`
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/events"
+        className={({ isActive }) =>
+          `text-sm font-medium transition-colors hover:text-primary ${
+            isActive ? "text-primary" : "text-muted-foreground"
+          }`
+        }
+      >
+        Events
+      </NavLink>
       {user && (
         <>
-          <li>
-            <NavLink to="/book-event">Book Event</NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-bookings">My Bookings</NavLink>
-          </li>
+          <NavLink
+            to="/book-event"
+            className={({ isActive }) =>
+              `text-sm font-medium transition-colors hover:text-primary ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
+          >
+            Book Event
+          </NavLink>
+          <NavLink
+            to="/my-bookings"
+            className={({ isActive }) =>
+              `text-sm font-medium transition-colors hover:text-primary ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
+          >
+            My Bookings
+          </NavLink>
           {user?.role === "organizer" && (
-            <li>
-              <NavLink to="/manage-events">Manage Events</NavLink>
-            </li>
+            <NavLink
+              to="/manage-events"
+              className={({ isActive }) =>
+                `text-sm font-medium transition-colors hover:text-primary ${
+                  isActive ? "text-primary" : "text-muted-foreground"
+                }`
+              }
+            >
+              Manage Events
+            </NavLink>
           )}
         </>
       )}
@@ -34,93 +77,102 @@ const Navbar = () => {
   );
 
   const handleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <nav>
-      <div className="navbar px-2 sm:px-8">
-        {/* Mobile menu button */}
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <Menu />
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {links}
-            </ul>
+    <nav className="sticky top-0 z-50 w-full dark:bg-black dark:text-white">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <div className="flex items-center gap-2">
+          {/* Mobile menu button */}
+          <div className="flex items-center gap-4 lg:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                className="flex flex-col gap-4 pt-10 w-44 pl-3"
+              >
+                {links}
+              </SheetContent>
+            </Sheet>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case text-xl px-0">
-            <div className="flex items-center">
-              <h2 className="text-2xl font-bold flex items-center">
+
+          {/* nav logo */}
+          <div>
+            <Link to="/" className="flex items-center">
+              <h2 className="text-xl font-bold">
                 <span className="text-primary">Athletic</span>Hub
               </h2>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
 
         {/* Desktop menu */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+        <div className="hidden items-center gap-6 lg:flex">
+          <div className="flex items-center gap-6">{links}</div>
         </div>
 
         {/* User section */}
-        <div className="navbar-end space-x-3">
-          <div>
-            {user ? (
-              <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    {user?.profilePic ? (
-                      <img
-                        src={user?.profilePic}
-                        alt="User profile"
-                        title={user?.name}
-                      />
-                    ) : (
-                      <div className="flex justify-center items-center">
-                        <User className="mt-1" />
-                      </div>
-                    )}
-                  </div>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <Link className="justify-between">Profile</Link>
-                  </li>
-                  <li>
-                    <Link to="/book-event">Book Event</Link>
-                  </li>
-                  <li>
-                    <Link to="/my-bookings">My Bookings</Link>
-                  </li>
-                  {user?.role === "organizer" && (
-                    <li>
-                      <Link to="/manage-events">Manage Events</Link>
-                    </li>
-                  )}
-                  <li>
-                    <button>Logout</button>
-                  </li>
-                </ul>
-              </div>
+        <div className="flex items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleTheme}
+            className="h-9 w-9"
+          >
+            {theme === "light" ? (
+              <Moon className="h-5 w-5" />
             ) : (
-              <button className="btn btn-primary">Login</button>
+              <Sun className="h-5 w-5" />
             )}
-          </div>
-          <div onClick={() => handleTheme()}>
-            {theme !== "light" ? <Sun /> : <Moon />}
-          </div>
+          </Button>
+
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-full"
+                >
+                  {user?.profilePic ? (
+                    <img
+                      src={user.profilePic}
+                      alt="User profile"
+                      className="h-full w-full rounded-full"
+                    />
+                  ) : (
+                    <User className="h-5 w-5" />
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem asChild>
+                  <Link to="/profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/book-event">Book Event</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/my-bookings">My Bookings</Link>
+                </DropdownMenuItem>
+                {user?.role === "organizer" && (
+                  <DropdownMenuItem asChild>
+                    <Link to="/manage-events">Manage Events</Link>
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
         </div>
       </div>
     </nav>
