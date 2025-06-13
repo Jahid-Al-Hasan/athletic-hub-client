@@ -36,7 +36,7 @@ const Navbar = () => {
         Home
       </NavLink>
       <NavLink
-        to="/events"
+        to="/all-events"
         className={({ isActive }) =>
           `text-sm font-medium transition-colors hover:text-primary ${
             isActive ? "text-primary" : "text-muted-foreground"
@@ -45,42 +45,6 @@ const Navbar = () => {
       >
         Events
       </NavLink>
-      {user && (
-        <>
-          <NavLink
-            to="/book-event"
-            className={({ isActive }) =>
-              `text-sm font-medium transition-colors hover:text-primary ${
-                isActive ? "text-primary" : "text-muted-foreground"
-              }`
-            }
-          >
-            Book Event
-          </NavLink>
-          <NavLink
-            to="/my-bookings"
-            className={({ isActive }) =>
-              `text-sm font-medium transition-colors hover:text-primary ${
-                isActive ? "text-primary" : "text-muted-foreground"
-              }`
-            }
-          >
-            My Bookings
-          </NavLink>
-          {user?.role === "organizer" && (
-            <NavLink
-              to="/manage-events"
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors hover:text-primary ${
-                  isActive ? "text-primary" : "text-muted-foreground"
-                }`
-              }
-            >
-              Manage Events
-            </NavLink>
-          )}
-        </>
-      )}
     </>
   );
 
@@ -152,9 +116,9 @@ const Navbar = () => {
 
           {user ? (
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Tooltip>
-                  <TooltipTrigger asChild>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
                       size="icon"
@@ -164,20 +128,21 @@ const Navbar = () => {
                         <img
                           src={user.profilePic}
                           alt="User profile"
-                          className="h-full w-full rounded-full"
+                          className="h-full w-full rounded-full object-cover"
                         />
                       ) : (
                         <User className="h-5 w-5" />
                       )}
                     </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className=" text-xl text-amber-300">
-                      {user?.displayName}
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </DropdownMenuTrigger>
+                  </DropdownMenuTrigger>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-xl text-amber-300">
+                    {user?.displayName || "Profile"}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
                   <Link to="/profile">Profile</Link>
@@ -188,11 +153,9 @@ const Navbar = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/my-bookings">My Bookings</Link>
                 </DropdownMenuItem>
-                {user?.role === "organizer" && (
-                  <DropdownMenuItem asChild>
-                    <Link to="/manage-events">Manage Events</Link>
-                  </DropdownMenuItem>
-                )}
+                <DropdownMenuItem asChild>
+                  <Link to="/manage-events">Manage Events</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout}>
                   Logout
                 </DropdownMenuItem>
