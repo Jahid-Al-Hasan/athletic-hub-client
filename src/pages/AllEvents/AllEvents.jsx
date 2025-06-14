@@ -1,7 +1,26 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
+import { useLoaderData } from "react-router";
+import EventCard from "../../components/EventCard/EventCard";
 
 const AllEvents = () => {
-  return <div>This is all events page</div>;
+  const events = useLoaderData();
+  console.log(events);
+  return (
+    <div>
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold tracking-tight">All Events</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events?.length !== 0 &&
+            events.map((event) => <EventCard key={event?._id} event={event} />)}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AllEvents;

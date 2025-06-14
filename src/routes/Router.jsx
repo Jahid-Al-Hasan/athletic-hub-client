@@ -10,6 +10,9 @@ import BookEvent from "../pages/BookEvent/BookEvent";
 import MyBookings from "../pages/MyBookings/MyBookings";
 import ManageEvents from "../pages/ManageEvents/ManageEvents";
 import AllEvents from "../pages/AllEvents/AllEvents";
+import axios from "axios";
+import EventDetails from "../pages/EventDetails/EventDetails";
+import { Loading } from "../components/Loading/Loading";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +25,9 @@ const router = createBrowserRouter([
       { path: "signup", Component: Register },
       {
         path: "all-events",
+        loader: () => fetch("http://localhost:3000/api/v1/events"),
         Component: AllEvents,
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "book-event",
@@ -55,6 +60,13 @@ const router = createBrowserRouter([
             <CreateEvent />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "event-details/:id",
+        loader: ({ params }) => {
+          axios.get(`http://localhost:3000/api/v1/event/${params.id}`);
+        },
+        Component: EventDetails,
       },
     ],
   },

@@ -148,6 +148,9 @@ const Navbar = () => {
                   <Link to="/profile">Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
+                  <Link to="/create-event">Create Event</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link to="/book-event">Book Event</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
