@@ -29,17 +29,17 @@ const EventCard = ({ event }) => {
           {/* Image with overlay effect */}
           <div className="relative overflow-hidden">
             <img
-              src={event?.image}
+              src={event?.pictureUrl}
               alt={event?.name}
-              className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-48 object-cover object-center"
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" /> */}
           </div>
 
           {/* Category badge */}
           <span className="absolute top-3 right-3 px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full shadow-sm">
-            {event.category}
+            {event?.category}
           </span>
         </CardHeader>
 
@@ -85,7 +85,7 @@ const EventCard = ({ event }) => {
             asChild
             className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all shadow-lg hover:shadow-primary/20"
           >
-            <Link to={`/events/${event?._id}`}>View Details</Link>
+            <Link to={`/event/${event?._id}`}>View Details</Link>
           </Button>
         </CardFooter>
       </Card>

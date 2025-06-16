@@ -25,7 +25,7 @@ const FeaturedEvents = () => {
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold tracking-tight">Featured Events</h2>
           <Button asChild variant="outline">
-            <Link to="/all-events">See All Events</Link>
+            <Link to="/events">See All Events</Link>
           </Button>
         </div>
 

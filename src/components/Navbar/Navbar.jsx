@@ -36,7 +36,7 @@ const Navbar = () => {
         Home
       </NavLink>
       <NavLink
-        to="/all-events"
+        to="/events"
         className={({ isActive }) =>
           `text-sm font-medium transition-colors hover:text-primary ${
             isActive ? "text-primary" : "text-muted-foreground"

@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       { path: "login", Component: Login },
       { path: "signup", Component: Register },
       {
-        path: "all-events",
+        path: "events",
         loader: () => fetch("http://localhost:3000/api/v1/events"),
         Component: AllEvents,
         hydrateFallbackElement: <Loading />,
@@ -62,11 +62,25 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "event-details/:id",
-        loader: ({ params }) => {
-          axios.get(`http://localhost:3000/api/v1/event/${params.id}`);
+        path: "event/:id",
+        loader: async ({ params }) => {
+          try {
+            const response = await axios.get(
+              `http://localhost:3000/api/v1/event/${params.id}`
+            );
+            return response.data;
+          } catch (error) {
+            throw new Response(null, {
+              status: error.response?.status || "Event not found",
+            });
+          }
         },
-        Component: EventDetails,
+        element: (
+          <ProtectedRoute>
+            <EventDetails />
+          </ProtectedRoute>
+        ),
+        hydrateFallbackElement: <Loading />,
       },
     ],
   },
