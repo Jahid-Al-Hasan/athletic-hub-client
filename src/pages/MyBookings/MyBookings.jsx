@@ -11,15 +11,23 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Trash2, Calendar, MapPin, Ticket } from "lucide-react";
+import { Trash2, Calendar, MapPin, Ticket, List, Grid } from "lucide-react";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookedEvents, setBookedEvents] = useState([]);
   const [cancellingId, setCancellingId] = useState(null);
+  const [viewMode, setViewMode] = useState("table"); // 'table' or 'card'
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -58,7 +66,27 @@ const MyBookings = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">My Bookings</h1>
+      <div className="flex justify-between items-start mb-6">
+        <h1 className="text-2xl font-bold">My Bookings</h1>
+        <div className="flex flex-col md:flex-row gap-2">
+          <Button
+            variant={viewMode === "table" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setViewMode("table")}
+          >
+            <List className="h-4 w-4 mr-2" />
+            Table View
+          </Button>
+          <Button
+            variant={viewMode === "card" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setViewMode("card")}
+          >
+            <Grid className="h-4 w-4 mr-2" />
+            Card View
+          </Button>
+        </div>
+      </div>
 
       {bookedEvents.length === 0 ? (
         <div className="text-center py-12">
@@ -74,7 +102,7 @@ const MyBookings = () => {
             <a href="/events">Browse Events</a>
           </Button>
         </div>
-      ) : (
+      ) : viewMode === "table" ? (
         <div className="border rounded-lg overflow-hidden shadow-sm">
           <Table>
             <TableHeader className="bg-gray-50">
@@ -131,6 +159,51 @@ const MyBookings = () => {
               ))}
             </TableBody>
           </Table>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {bookedEvents.map((booking) => (
+            <Card
+              key={booking?._id}
+              className="hover:shadow-lg transition-shadow"
+            >
+              <CardHeader>
+                <CardTitle>{booking?.name}</CardTitle>
+                <div className="flex items-center mt-2">
+                  <span className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                    {booking?.category}
+                  </span>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center text-sm">
+                  <Calendar className="h-4 w-4 mr-2 text-gray-500" />
+                  {format(new Date(booking?.date), "MMM dd, yyyy")}
+                </div>
+                <div className="flex items-center text-sm">
+                  <MapPin className="h-4 w-4 mr-2 text-gray-500" />
+                  {booking?.location}
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-end">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => handleCancelBooking(booking._id)}
+                  disabled={cancellingId === booking._id}
+                >
+                  {cancellingId === booking._id ? (
+                    "Cancelling..."
+                  ) : (
+                    <>
+                      <Trash2 className="h-4 w-4 mr-1" />
+                      Cancel
+                    </>
+                  )}
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       )}
     </div>
