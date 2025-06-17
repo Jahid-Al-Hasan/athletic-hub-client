@@ -30,7 +30,7 @@ const EventDetails = () => {
     try {
       axios
         .patch(
-          `http://localhost:3000/api/v1/update-event/${event?._id}?email=${user?.email}`
+          `http://localhost:3000/api/v1/update-eventParticipants/${event?._id}?email=${user?.email}`
         )
         .then((res) => {
           setDisableBooking(true);

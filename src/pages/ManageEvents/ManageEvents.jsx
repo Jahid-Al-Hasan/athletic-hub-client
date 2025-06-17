@@ -16,6 +16,7 @@ import { Edit, Trash2, Plus, Calendar, MapPin, Users } from "lucide-react";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
 import DeleteConfirmationDialog from "../../components/DeleteConfirmationDialog/DeleteConfirmationDialog";
+import UpdateEventModal from "../../components/UpdateEventModal/UpdateEventModal";
 
 const ManageEvents = () => {
   const { user } = useContext(AuthContext);
@@ -23,6 +24,9 @@ const ManageEvents = () => {
   const [events, setEvents] = useState([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [refreshEvents, setRefreshEvents] = useState(false);
 
   useEffect(() => {
     if (!user?.email) return;
@@ -40,14 +44,14 @@ const ManageEvents = () => {
     };
 
     fetchEvents();
-  }, [user?.email]);
+  }, [user?.email, refreshEvents]);
 
   const handleDeleteEvent = async () => {
     if (!eventToDelete) return;
 
     try {
       const result = await axios.delete(
-        `http://localhost:3000/api/v1/events/${eventToDelete}?creatorEmail=${user?.email}`
+        `http://localhost:3000/api/v1/delete-event/${eventToDelete}?creatorEmail=${user?.email}`
       );
       if (!result) {
         Swal.fire("Event is not deleted");
@@ -65,8 +69,9 @@ const ManageEvents = () => {
     }
   };
 
-  const handleUpdateEvent = (eventId) => {
-    navigate(`/update-event/${eventId}`);
+  const handleUpdateEvent = (event) => {
+    setSelectedEvent(event);
+    setUpdateModalOpen(true);
   };
 
   return (
@@ -104,7 +109,7 @@ const ManageEvents = () => {
                 <TableHead className="w-[200px]">Event Name</TableHead>
                 <TableHead>Date</TableHead>
                 <TableHead>Location</TableHead>
-                <TableHead>Type</TableHead>
+                <TableHead>Category</TableHead>
                 <TableHead>Participants</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
@@ -127,7 +132,7 @@ const ManageEvents = () => {
                   </TableCell>
                   <TableCell>
                     <span className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
-                      {event?.eventType}
+                      {event?.category}
                     </span>
                   </TableCell>
                   <TableCell>
@@ -141,7 +146,7 @@ const ManageEvents = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handleUpdateEvent(event._id)}
+                        onClick={() => handleUpdateEvent(event)}
                         className="cursor-pointer"
                       >
                         <Edit className="h-4 w-4 mr-1" />
@@ -174,6 +179,15 @@ const ManageEvents = () => {
         onConfirm={handleDeleteEvent}
         title="Delete Event"
         description="Are you sure you want to delete this event? This action cannot be undone."
+      />
+
+      <UpdateEventModal
+        event={selectedEvent}
+        open={updateModalOpen}
+        onOpenChange={setUpdateModalOpen}
+        onSuccess={() => {
+          setRefreshEvents(!refreshEvents);
+        }}
       />
     </div>
   );

@@ -334,7 +334,7 @@ export default function CreateEvent() {
         <div className="flex justify-end">
           <Button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white"
+            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white cursor-pointer"
           >
             Create Event
           </Button>

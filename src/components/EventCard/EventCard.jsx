@@ -29,7 +29,7 @@ const EventCard = ({ event }) => {
           {/* Image with overlay effect */}
           <div className="relative overflow-hidden">
             <img
-              src={event?.pictureUrl}
+              src={event?.pictureUrl === "" ? null : event.pictureUrl}
               alt={event?.name}
               className="w-full h-48 object-cover object-center"
             />
