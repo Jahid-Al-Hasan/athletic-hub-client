@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthContext";
-import axios from "axios";
 import {
   Table,
   TableBody,
@@ -15,20 +14,20 @@ import { Button } from "@/components/ui/button";
 import { Trash2, Calendar, MapPin, Ticket } from "lucide-react";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookedEvents, setBookedEvents] = useState([]);
   const [cancellingId, setCancellingId] = useState(null);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (!user?.email) return;
 
     const fetchBookings = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:3000/api/v1/my-bookings?email=${user?.email}`
-        );
+        const res = await axiosSecure.get(`/my-bookings?email=${user?.email}`);
         setBookedEvents(res.data);
       } catch (err) {
         Swal.fire("Failed to load bookings");
@@ -37,13 +36,13 @@ const MyBookings = () => {
     };
 
     fetchBookings();
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
 
   const handleCancelBooking = async (bookingId) => {
     setCancellingId(bookingId);
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/v1/cancel-booking/${bookingId}?email=${user?.email}`
+      const response = await axiosSecure.patch(
+        `/cancel-booking/${bookingId}?email=${user?.email}`
       );
       setBookedEvents(bookedEvents.filter((event) => event._id !== bookingId));
       if (response?.matchedCount > 0) {
@@ -112,6 +111,7 @@ const MyBookings = () => {
                     <Button
                       variant="destructive"
                       size="sm"
+                      className="cursor-pointer"
                       onClick={() => {
                         handleCancelBooking(booking._id);
                       }}

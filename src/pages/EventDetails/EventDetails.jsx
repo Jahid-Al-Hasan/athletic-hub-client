@@ -15,7 +15,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { AuthContext } from "../../provider/AuthContext";
 import Swal from "sweetalert2";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -23,15 +23,14 @@ const EventDetails = () => {
   const { user } = useContext(AuthContext);
   const [disableBooking, setDisableBooking] = useState(false);
   const event = useLoaderData();
+  const axiosSecure = useAxiosSecure();
 
   const participantCount = event?.participants?.length || 0;
 
   const handleBookEvent = async () => {
     try {
-      axios
-        .patch(
-          `http://localhost:3000/api/v1/update-eventParticipants/${event?._id}?email=${user?.email}`
-        )
+      axiosSecure
+        .patch(`/update-eventParticipants/${event?._id}?email=${user?.email}`)
         .then((res) => {
           setDisableBooking(true);
           if (res?.data?.result?.modifiedCount > 0) {

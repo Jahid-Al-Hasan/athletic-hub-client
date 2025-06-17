@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthContext";
-import axios from "axios";
 import {
   Table,
   TableBody,
@@ -17,6 +16,7 @@ import { format } from "date-fns";
 import Swal from "sweetalert2";
 import DeleteConfirmationDialog from "../../components/DeleteConfirmationDialog/DeleteConfirmationDialog";
 import UpdateEventModal from "../../components/UpdateEventModal/UpdateEventModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageEvents = () => {
   const { user } = useContext(AuthContext);
@@ -27,14 +27,15 @@ const ManageEvents = () => {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [refreshEvents, setRefreshEvents] = useState(false);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (!user?.email) return;
 
     const fetchEvents = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:3000/api/v1/creator-events?creatorEmail=${user.email}`
+        const res = await axiosSecure.get(
+          `/creator-events?email=${user?.email}`
         );
         setEvents(res.data);
       } catch (err) {
@@ -44,14 +45,14 @@ const ManageEvents = () => {
     };
 
     fetchEvents();
-  }, [user?.email, refreshEvents]);
+  }, [user?.email, refreshEvents, axiosSecure]);
 
   const handleDeleteEvent = async () => {
     if (!eventToDelete) return;
 
     try {
-      const result = await axios.delete(
-        `http://localhost:3000/api/v1/delete-event/${eventToDelete}?creatorEmail=${user?.email}`
+      const result = await axiosSecure.delete(
+        `/delete-event/${eventToDelete}?email=${user?.email}`
       );
       if (!result) {
         Swal.fire("Event is not deleted");

@@ -19,7 +19,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { AuthContext } from "../../provider/AuthContext";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const eventTypes = [
   "Swimming",
@@ -40,6 +40,7 @@ export default function CreateEvent() {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(undefined);
+  const axiosSecure = useAxiosSecure();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,8 +62,8 @@ export default function CreateEvent() {
     } else {
       newEvent.date = `${format(date, "yyyy-MM-dd")}T${newEvent.time}Z`;
       delete newEvent.time;
-      axios
-        .post("http://localhost:3000/api/v1/createEvent", newEvent)
+      axiosSecure
+        .post(`/createEvent?email=${user?.email}`, newEvent)
         .then((res) => {
           if (res.data.insertedId) {
             Swal.fire({

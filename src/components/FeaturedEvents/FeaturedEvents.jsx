@@ -3,17 +3,18 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import EventCard from "../EventCard/EventCard";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const FeaturedEvents = () => {
   const [events, setEvents] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/v1/events")
+    axiosSecure
+      .get("/events")
       .then((res) => setEvents(res.data))
       .catch((err) => console.error("Failed to load events:", err));
-  }, []);
+  }, [axiosSecure]);
   // Sort events by date (ascending)
   const sortedEvents = [...events]
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())

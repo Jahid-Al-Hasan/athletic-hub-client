@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   Dialog,
   DialogContent,
@@ -19,6 +18,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Calendar, ChevronDownIcon } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthContext";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const eventTypes = [
   "Swimming",
@@ -36,9 +38,8 @@ const eventTypes = [
 ];
 
 const UpdateEventModal = ({ event, open, onOpenChange, onSuccess }) => {
-  // const [date, setDate] = useState(() =>
-  //   event?.date ? parseISO(event.date) : undefined
-  // );
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -55,8 +56,8 @@ const UpdateEventModal = ({ event, open, onOpenChange, onSuccess }) => {
     updatedEvent.capacity = Number(updatedEvent.capacity);
 
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/v1/update-event/${event?._id}`,
+      const response = await axiosSecure.patch(
+        `/update-event/${event?._id}?email=${user?.email}`,
         updatedEvent
       );
       if (response.data.modifiedCount > 0) {
