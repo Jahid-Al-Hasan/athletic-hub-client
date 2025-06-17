@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Swal from "sweetalert2";
 import { Loading } from "../../components/Loading/Loading";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const MyProfile = () => {
   const { user, profileUpdate } = useContext(AuthContext);
@@ -67,6 +68,7 @@ const MyProfile = () => {
 
   return (
     <div className="min-h-[calc(100vh-100px)] py-12 px-4 sm:px-6 lg:px-8">
+      <PageTitle title="Profile" />
       <div className="max-w-4xl mx-auto">
         <div className=" rounded-xl shadow-sm overflow-hidden border">
           {/* Profile Header */}

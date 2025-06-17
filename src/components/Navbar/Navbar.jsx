@@ -151,7 +151,7 @@ const Navbar = () => {
                   <Link to="/create-event">Create Event</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/book-event">Book Event</Link>
+                  <Link to="/events">Book Event</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/my-bookings">My Bookings</Link>

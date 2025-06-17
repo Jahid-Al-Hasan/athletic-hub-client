@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import DeleteConfirmationDialog from "../../components/DeleteConfirmationDialog/DeleteConfirmationDialog";
 import UpdateEventModal from "../../components/UpdateEventModal/UpdateEventModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const ManageEvents = () => {
   const { user } = useContext(AuthContext);
@@ -77,6 +78,7 @@ const ManageEvents = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <PageTitle title="Manage Events" />
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Manage Your Events</h1>
         <Button onClick={() => navigate("/create-event")}>

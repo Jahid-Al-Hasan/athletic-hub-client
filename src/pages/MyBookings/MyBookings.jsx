@@ -22,6 +22,7 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -66,6 +67,7 @@ const MyBookings = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <PageTitle title="My Bookings" />
       <div className="flex justify-between items-start mb-6">
         <h1 className="text-2xl font-bold">My Bookings</h1>
         <div className="flex flex-col md:flex-row gap-2">

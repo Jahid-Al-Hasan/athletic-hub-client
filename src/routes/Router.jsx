@@ -6,7 +6,6 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ProtectedRoute from "../provider/ProtectedRoute";
 import CreateEvent from "../pages/CreateEvent/CreateEvent";
-import BookEvent from "../pages/BookEvent/BookEvent";
 import MyBookings from "../pages/MyBookings/MyBookings";
 import ManageEvents from "../pages/ManageEvents/ManageEvents";
 import AllEvents from "../pages/AllEvents/AllEvents";
@@ -30,17 +29,10 @@ const router = createBrowserRouter([
       },
       {
         path: "events",
-        loader: () => fetch("http://localhost:3000/api/v1/events"),
+        loader: () =>
+          fetch("https://athletichubserver.vercel.app/api/v1/events"),
         Component: AllEvents,
         hydrateFallbackElement: <Loading />,
-      },
-      {
-        path: "book-event",
-        element: (
-          <ProtectedRoute>
-            <BookEvent />
-          </ProtectedRoute>
-        ),
       },
       {
         path: "my-bookings",
@@ -71,7 +63,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           try {
             const response = await axios.get(
-              `http://localhost:3000/api/v1/event/${params.id}`
+              `https://athletichubserver.vercel.app/api/v1/event/${params.id}`
             );
             return response.data;
           } catch (error) {

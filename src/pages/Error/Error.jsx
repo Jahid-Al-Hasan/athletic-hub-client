@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar/Navbar";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const Error = () => {
   return (
     <div>
+      <PageTitle title="ERROR" />
       <Navbar />
       <div className="h-screen flex flex-col items-center justify-center  text-center px-4">
         <motion.h1

@@ -8,7 +8,7 @@ export const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/v1/testimonials")
+      .get("https://athletichubserver.vercel.app/api/v1/testimonials")
       .then((res) => {
         setTestimonials(res.data);
       })

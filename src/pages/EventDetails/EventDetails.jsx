@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { AuthContext } from "../../provider/AuthContext";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -65,6 +66,7 @@ const EventDetails = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <PageTitle title="Event Details" />
       <Button
         variant="outline"
         onClick={() => navigate("/events")}

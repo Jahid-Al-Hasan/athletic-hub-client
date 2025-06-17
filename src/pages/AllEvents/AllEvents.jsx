@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import EventCard from "../../components/EventCard/EventCard";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const AllEvents = () => {
   const allEvents = useLoaderData();
@@ -24,6 +25,7 @@ const AllEvents = () => {
 
   return (
     <div className="px-4 py-8">
+      <PageTitle title="Events" />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <h2 className="text-3xl font-bold tracking-tight">All Events</h2>

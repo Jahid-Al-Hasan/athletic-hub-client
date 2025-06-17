@@ -60,8 +60,7 @@ const UpdateEventModal = ({ event, open, onOpenChange, onSuccess }) => {
         `/update-event/${event?._id}?email=${user?.email}`,
         updatedEvent
       );
-      if (response.data.modifiedCount > 0) {
-        console.log(response);
+      if (response?.data?.modifiedCount > 0) {
         Swal.fire("Event updated successfully");
         // Close modal and refresh
         onOpenChange(false);

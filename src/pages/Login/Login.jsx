@@ -16,6 +16,7 @@ import { AuthContext } from "../../provider/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
 import { Loading } from "../../components/Loading/Loading";
 import Swal from "sweetalert2";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const Login = () => {
   const { user, signInWithGoogle, loginUser, loading } =
@@ -79,6 +80,7 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-65px)]">
+      <PageTitle title="Login" />
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Log in to your account</CardTitle>

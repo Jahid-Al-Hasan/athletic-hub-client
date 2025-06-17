@@ -15,6 +15,7 @@ import { AuthContext } from "../../provider/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
 import { Loading } from "../../components/Loading/Loading";
 import Swal from "sweetalert2";
+import PageTitle from "../../utils/PageTitle/PageTitle";
 
 const Register = () => {
   const { user, signInWithGoogle, createUser, profileUpdate, loading } =
@@ -87,6 +88,7 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-65px)]">
+      <PageTitle title="Register" />
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Create new account</CardTitle>
