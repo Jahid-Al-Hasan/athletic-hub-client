@@ -13,6 +13,7 @@ import AllEvents from "../pages/AllEvents/AllEvents";
 import axios from "axios";
 import EventDetails from "../pages/EventDetails/EventDetails";
 import { Loading } from "../components/Loading/Loading";
+import MyProfile from "../pages/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "login", Component: Login },
       { path: "signup", Component: Register },
+      {
+        path: "my-profile",
+        Component: MyProfile,
+      },
       {
         path: "events",
         loader: () => fetch("http://localhost:3000/api/v1/events"),
