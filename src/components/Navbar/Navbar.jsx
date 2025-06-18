@@ -64,7 +64,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full dark:bg-black ">
+    <nav className="sticky top-0 z-50 w-full dark:bg-black border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {/* Mobile menu button */}
@@ -86,9 +86,10 @@ const Navbar = () => {
 
           {/* nav logo */}
           <div>
-            <Link to="/" className="flex items-center">
-              <h2 className="text-xl font-bold">
-                <span className="text-primary">Athletic</span>Hub
+            <Link to="/" className="flex items-center gap-2">
+              <img src="/logo.png" alt="logo" className="w-6 lg:w-7" />
+              <h2 className="text-xl lg:text-2xl font-bold">
+                <span className="text-blue-700">Athletic</span>Hub
               </h2>
             </Link>
           </div>
@@ -137,9 +138,7 @@ const Navbar = () => {
                   </DropdownMenuTrigger>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p className="text-xl text-amber-300">
-                    {user?.displayName || "Profile"}
-                  </p>
+                  <p className="text-base ">{user?.displayName || "Profile"}</p>
                 </TooltipContent>
               </Tooltip>
 

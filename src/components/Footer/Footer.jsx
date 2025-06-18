@@ -15,14 +15,20 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral text-neutral-content mt-auto">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-neutral text-neutral-content mt-auto border-t bg-[#8B975E] dark:bg-gray-950">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Brand Info */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold flex items-center">
-              <span className="text-primary">Athletic</span>Hub
-            </h2>
+            {/* nav logo */}
+            <div>
+              <Link to="/" className="flex items-center gap-2">
+                <img src="/logo.png" alt="logo" className="w-6" />
+                <h2 className="text-xl font-bold">
+                  <span className="text-blue-700">Athletic</span>Hub
+                </h2>
+              </Link>
+            </div>
             <p className="text-sm opacity-80">
               Your premier destination for sports training, equipment, and
               community.
@@ -52,7 +58,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/"
+                  to="/"
                   className="link link-hover opacity-80 hover:text-primary"
                 >
                   Home
@@ -60,19 +66,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/events"
+                  to="/events"
                   className="link link-hover opacity-80 hover:text-primary"
                 >
                   Events
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/book-event"
-                  className="link link-hover opacity-80 hover:text-primary"
-                >
-                  Book Event
                 </Link>
               </li>
             </ul>
@@ -116,19 +113,19 @@ const Footer = () => {
           </p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a
-              href="#"
+              href=""
               className="link link-hover text-sm opacity-80 hover:text-primary"
             >
               Privacy Policy
             </a>
             <a
-              href="#"
+              href=""
               className="link link-hover text-sm opacity-80 hover:text-primary"
             >
               Terms of Service
             </a>
             <a
-              href="#"
+              href=""
               className="link link-hover text-sm opacity-80 hover:text-primary"
             >
               Sitemap

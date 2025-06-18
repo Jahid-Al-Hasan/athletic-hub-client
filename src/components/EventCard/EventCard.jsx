@@ -23,7 +23,7 @@ const EventCard = ({ event }) => {
     <div>
       <Card
         key={event._id}
-        className="group hover:shadow-xl transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30 h-full"
+        className="group hover:shadow-xl transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30 h-full pt-0"
       >
         <CardHeader className="relative p-0">
           {/* Image with overlay effect */}
