@@ -70,6 +70,7 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       return await signOut(auth);
     } finally {
+      axiosSecure.get("/clear-cookie").catch((err) => console.log(err));
       setLoading(false);
     }
   };
@@ -79,14 +80,19 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       // authorization token request
       if (currentUser?.email) {
-        axiosSecure.post("/jwt", {
-          email: currentUser.email,
-        });
+        axiosSecure
+          .post("/jwt", {
+            email: currentUser.email,
+          })
+          .catch((err) => {
+            console.log(err);
+            logOut();
+          });
       }
       setLoading(false);
     });
     return () => unsubscribe();
-  }, [axiosSecure]);
+  }, []);
 
   const userInfo = {
     loading,

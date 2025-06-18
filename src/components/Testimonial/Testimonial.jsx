@@ -1,14 +1,15 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import axios from "axios";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 export const Testimonial = () => {
+  const axiosSecure = useAxiosSecure();
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://athletichubserver.vercel.app/api/v1/testimonials")
+    axiosSecure
+      .get("/testimonials")
       .then((res) => {
         setTestimonials(res.data);
       })

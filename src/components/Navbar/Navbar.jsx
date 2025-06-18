@@ -28,7 +28,7 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `text-sm font-medium transition-colors hover:text-primary ${
+          `text-base font-medium transition-colors hover:text-primary ${
             isActive ? "text-primary" : "text-muted-foreground"
           }`
         }
@@ -38,7 +38,7 @@ const Navbar = () => {
       <NavLink
         to="/events"
         className={({ isActive }) =>
-          `text-sm font-medium transition-colors hover:text-primary ${
+          `text-base font-medium transition-colors hover:text-primary ${
             isActive ? "text-primary" : "text-muted-foreground"
           }`
         }
@@ -64,7 +64,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full dark:bg-black dark:text-white">
+    <nav className="sticky top-0 z-50 w-full dark:bg-black ">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {/* Mobile menu button */}
