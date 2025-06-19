@@ -101,6 +101,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="your@email.com"
+                className="border-primary"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -117,7 +118,7 @@ const Login = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="pl-10 pr-10"
+                className="pl-10 pr-10 border-primary"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -157,7 +158,7 @@ const Login = () => {
           <Button
             onClick={handleGoogleLogin}
             variant="outline"
-            className="w-full"
+            className="w-full border border-primary cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

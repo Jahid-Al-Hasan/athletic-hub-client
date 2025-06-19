@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthContext";
-import { Briefcase, Phone, Timer, Mail, Edit } from "lucide-react";
+import { Briefcase, Phone, Timer, Mail, Edit, Badge } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -9,6 +9,15 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -69,105 +78,98 @@ const MyProfile = () => {
   return (
     <div className="min-h-[calc(100vh-100px)] py-12 px-4 sm:px-6 lg:px-8">
       <PageTitle title="Profile" />
-      <div className="max-w-4xl mx-auto">
-        <div className=" rounded-xl shadow-sm overflow-hidden border">
-          {/* Profile Header */}
-          <div className="bg-accent p-6 sm:p-8">
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <Avatar className="w-24 h-24 sm:w-32 sm:h-32 border-4  shadow-lg">
-                <AvatarImage
-                  src={
-                    photoURL ||
-                    "https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
-                  }
-                />
-                <AvatarFallback>{displayName?.charAt(0) || "U"}</AvatarFallback>
-              </Avatar>
-              <div className="text-center sm:text-left">
-                <h1 className="text-2xl sm:text-3xl font-bold ">
-                  {displayName || "Anonymous User"}
-                </h1>
-                <p className="text-blue-600 mt-1">{email}</p>
-              </div>
+      <Card className="max-w-4xl mx-auto">
+        {/* Profile Header */}
+        <CardHeader className="border-b">
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <Avatar className="w-24 h-24 sm:w-32 sm:h-32 border-4  shadow-lg">
+              <AvatarImage src={photoURL} />
+              <AvatarFallback>{displayName?.charAt(0) || "U"}</AvatarFallback>
+            </Avatar>
+            <div className="text-center sm:text-left">
+              <h1 className="text-2xl sm:text-3xl font-bold ">
+                {displayName || "Anonymous User"}
+              </h1>
+              <p className="text-blue-600 mt-1">{email}</p>
             </div>
           </div>
+        </CardHeader>
 
-          {/* Profile Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                  Account Information
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 text-blue-600 mt-1">
-                      <Briefcase className="h-5 w-5" />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-500">
-                        Member Since
-                      </p>
-                      <p className="text-sm text-gray-900">{joinDate}</p>
-                    </div>
+        {/* Profile Details */}
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-lg font-semibold mb-4">
+                Account Information
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Briefcase className="h-5 w-5 text-primary" />
                   </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 text-blue-600 mt-1">
-                      <Timer className="h-5 w-5" />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-500">
-                        Last Sign In
-                      </p>
-                      <p className="text-sm text-gray-900">{lastSignIn}</p>
-                    </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      Member Since
+                    </p>
+                    <p className="font-medium">{joinDate}</p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                  Contact Information
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 text-blue-600 mt-1">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-500">Email</p>
-                      <p className="text-sm text-gray-900">{email}</p>
-                    </div>
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Timer className="h-5 w-5 text-primary" />
                   </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 h-5 w-5 text-blue-600 mt-1">
-                      <Phone className="h-5 w-5" />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-500">Phone</p>
-                      <p className="text-sm text-gray-900">
-                        {phoneNumber || "Not provided"}
-                      </p>
-                    </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">
+                      Last Sign In
+                    </p>
+                    <p className="font-medium">{lastSignIn}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Profile Footer */}
-          <div className="bg-accent px-6 py-4 sm:px-8 sm:py-6 flex justify-end border-t ">
-            <Button onClick={handleOpenDialog} className="gap-2">
-              <Edit className="h-4 w-4" />
-              Update Profile
-            </Button>
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-lg font-semibold mb-4">
+                Contact Information
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Email</p>
+                    <p className="font-medium">{email}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="font-medium">
+                      {phoneNumber || "Not provided"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+
+        {/* Profile Footer */}
+        <CardFooter className="border-t px-6 py-4 sm:px-8 sm:py-6 flex justify-end ">
+          <Button onClick={handleOpenDialog} className="gap-2 cursor-pointer">
+            <Edit className="h-4 w-4" />
+            Update Profile
+          </Button>
+        </CardFooter>
+      </Card>
 
       {/* Profile Update Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

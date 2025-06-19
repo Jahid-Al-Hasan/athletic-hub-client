@@ -65,7 +65,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 w-full dark:bg-black border-b">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+      <div className="w-full mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {/* Mobile menu button */}
           <div className="flex items-center gap-4 lg:hidden">
@@ -101,12 +101,12 @@ const Navbar = () => {
         </div>
 
         {/* User section */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={handleTheme}
-            className="h-9 w-9"
+            className="h-9 w-9 border-secondary border"
           >
             {theme === "light" ? (
               <Moon className="h-5 w-5" />
@@ -123,11 +123,11 @@ const Navbar = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-9 w-9 rounded-full"
+                      className="h-9 w-9 rounded-full border-secondary border"
                     >
-                      {user?.profilePic ? (
+                      {user.photoURL || user.photoURL !== null ? (
                         <img
-                          src={user.profilePic}
+                          src={user.photoURL}
                           alt="User profile"
                           className="h-full w-full rounded-full object-cover"
                         />

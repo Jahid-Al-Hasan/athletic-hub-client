@@ -17,7 +17,7 @@ export const Banner = () => {
   useEffect(() => {
     axios
       .get("https://athletichubserver.vercel.app/api/v1/events")
-      .then((res) => setEvents(res.data.slice(0, 3)))
+      .then((res) => setEvents(res.data.slice(0, 4)))
       .catch((err) => console.log(err));
   }, []);
   return (
@@ -47,7 +47,7 @@ export const Banner = () => {
               <div className="absolute inset-0 bg-black/80" />
 
               {/* Content container */}
-              <div className="container relative z-10 h-full flex items-center justify-center text-center">
+              <div className="mx-auto relative z-10 h-full flex items-center justify-center text-center">
                 <div className="max-w-2xl space-y-6 text-white">
                   {/* Title */}
                   <h1 className="animate__animated animate__fadeInDownBig text-4xl md:text-5xl font-bold tracking-tight">
@@ -57,7 +57,7 @@ export const Banner = () => {
                   {/* Subtitle */}
                   <Badge
                     variant="outline"
-                    className="animate__animated animate__fadeInDownBig h-8"
+                    className="animate__animated animate__fadeInDownBig h-8 border-primary"
                   >
                     <p className="text-xl text-muted-foreground">
                       {event?.category}

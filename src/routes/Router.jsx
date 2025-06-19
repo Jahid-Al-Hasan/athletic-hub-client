@@ -30,7 +30,9 @@ const router = createBrowserRouter([
       {
         path: "events",
         loader: () =>
-          fetch("https://athletichubserver.vercel.app/api/v1/events"),
+          fetch("https://athletichubserver.vercel.app/api/v1/events").catch(
+            (err) => console.log(err)
+          ),
         Component: AllEvents,
         hydrateFallbackElement: <Loading />,
       },

@@ -15,7 +15,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar, ChevronDownIcon } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import Swal from "sweetalert2";
 import { useContext } from "react";
@@ -70,6 +69,7 @@ const UpdateEventModal = ({ event, open, onOpenChange, onSuccess }) => {
       }
     } catch (error) {
       console.log(error);
+      Swal.fire("Something went wrong");
     }
   };
 

@@ -66,7 +66,7 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       <PageTitle title="My Bookings" />
       <div className="flex justify-between items-start mb-6">
         <h1 className="text-2xl font-bold">My Bookings</h1>
@@ -107,7 +107,7 @@ const MyBookings = () => {
       ) : viewMode === "table" ? (
         <div className="border rounded-lg overflow-hidden shadow-sm">
           <Table>
-            <TableHeader className="bg-gray-50">
+            <TableHeader className="bg-secondary">
               <TableRow>
                 <TableHead className="w-[200px]">Event</TableHead>
                 <TableHead>Date</TableHead>

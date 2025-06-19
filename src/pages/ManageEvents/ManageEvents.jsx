@@ -77,7 +77,7 @@ const ManageEvents = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       <PageTitle title="Manage Events" />
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Manage Your Events</h1>
@@ -104,10 +104,10 @@ const ManageEvents = () => {
       ) : (
         <div className="border rounded-lg overflow-hidden shadow-sm">
           <Table>
-            <TableCaption className="text-left px-6 py-2 bg-gray-50">
+            <TableCaption className="text-left px-6 py-2 bg-secondary">
               Events you've created
             </TableCaption>
-            <TableHeader className="bg-gray-50">
+            <TableHeader className="bg-secondary">
               <TableRow>
                 <TableHead className="w-[200px]">Event Name</TableHead>
                 <TableHead>Date</TableHead>
@@ -150,7 +150,7 @@ const ManageEvents = () => {
                         variant="outline"
                         size="sm"
                         onClick={() => handleUpdateEvent(event)}
-                        className="cursor-pointer"
+                        className="cursor-pointer dark:border-secondary"
                       >
                         <Edit className="h-4 w-4 mr-1" />
                         Update

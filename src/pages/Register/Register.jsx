@@ -51,7 +51,7 @@ const Register = () => {
             });
         }
         Swal.fire({
-          title: "Register successfully",
+          title: "Sign up successfully",
           icon: "success",
           draggable: true,
         });
@@ -59,7 +59,7 @@ const Register = () => {
       })
       .catch((err) => {
         Swal.fire({
-          title: `${err.message}`,
+          title: `Registration Failed!`,
           icon: "error",
         });
         console.log(err);
@@ -87,7 +87,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-65px)]">
+    <div className="flex items-center justify-center min-h-[calc(100vh-65px)] my-6">
       <PageTitle title="Register" />
       <Card className="w-full max-w-sm">
         <CardHeader>
@@ -110,6 +110,7 @@ const Register = () => {
                 id="name"
                 placeholder="your name"
                 value={name}
+                className="border-primary"
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -123,7 +124,7 @@ const Register = () => {
                 type="text"
                 id="photoUrl"
                 placeholder="https://...."
-                required
+                className="border-primary"
               />
             </div>
             {/* email */}
@@ -135,6 +136,7 @@ const Register = () => {
                 type="email"
                 id="email"
                 placeholder="your@email.com"
+                className="border-primary"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -151,7 +153,7 @@ const Register = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="pl-10 pr-10"
+                className="pl-10 pr-10 border-primary"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$"
@@ -175,7 +177,7 @@ const Register = () => {
               </button>
             </div>
             <Button type="submit" className="w-full">
-              Login
+              Signup
             </Button>
           </form>
         </CardContent>
@@ -184,7 +186,7 @@ const Register = () => {
           <Button
             onClick={handleGoogleLogin}
             variant="outline"
-            className="w-full"
+            className="w-full border-primary"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

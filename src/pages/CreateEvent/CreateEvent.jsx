@@ -11,6 +11,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -87,11 +96,9 @@ export default function CreateEvent() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md my-4">
+    <Card className="max-w-2xl mx-auto p-6 rounded-lg shadow-md my-4">
       <PageTitle title="Create Event" />
-      <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-        Create New Event
-      </h2>
+      <h2 className="text-2xl font-bold mb-6">Create New Event</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Event Name */}
@@ -106,13 +113,13 @@ export default function CreateEvent() {
             id="name"
             name="name"
             type="text"
-            className="w-full"
+            className="w-full border-primary"
             placeholder="Enter event name"
             required
           />
         </div>
 
-        {/* Event Type */}
+        {/* Category */}
         <div>
           <label
             htmlFor="category"
@@ -121,7 +128,7 @@ export default function CreateEvent() {
             Category *
           </label>
           <Select name="category" required>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full border-primary">
               <SelectValue placeholder="Select an event type" />
             </SelectTrigger>
             <SelectContent className="dark:bg-gray-800">
@@ -152,7 +159,7 @@ export default function CreateEvent() {
                 <Button
                   variant="outline"
                   id="date"
-                  className="w-48 justify-between font-normal"
+                  className="w-48 justify-between font-normal border-primary"
                 >
                   {date ? date.toLocaleDateString() : "Select date"}
                   <ChevronDownIcon />
@@ -189,7 +196,7 @@ export default function CreateEvent() {
               // onChange={(e) => setTime(e.target.value)}
               step="1"
               defaultValue="10:30:00"
-              className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+              className="border-primary bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
             />
           </div>
         </div>
@@ -206,7 +213,7 @@ export default function CreateEvent() {
             id="location"
             name="location"
             type="text"
-            className="w-full md:w-1/2 bg-gray-100 dark:bg-gray-700"
+            className="w-full md:w-1/2 bg-gray-100 dark:bg-gray-700 border-primary"
             required
           />
         </div>
@@ -222,7 +229,7 @@ export default function CreateEvent() {
           <Textarea
             id="description"
             name="description"
-            className="w-full min-h-[100px]"
+            className="w-full min-h-[100px] border-primary"
             placeholder="Enter event description"
             required
           />
@@ -240,7 +247,7 @@ export default function CreateEvent() {
             id="pictureUrl"
             name="pictureUrl"
             type="url"
-            className="w-full"
+            className="w-full border-primary"
             placeholder="https://example.com/image.jpg"
           />
         </div>
@@ -258,7 +265,7 @@ export default function CreateEvent() {
               id="registrationFee"
               name="registrationFee"
               type="number"
-              className="w-full bg-gray-100 dark:bg-gray-700"
+              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
               required
             />
           </div>
@@ -292,7 +299,7 @@ export default function CreateEvent() {
             id="organizer"
             name="organizer"
             type="text"
-            className="w-full bg-gray-100 dark:bg-gray-700"
+            className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
             required
           />
         </div>
@@ -311,7 +318,7 @@ export default function CreateEvent() {
               name="creatorEmail"
               type="email"
               value={user?.email}
-              className="w-full bg-gray-100 dark:bg-gray-700"
+              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
               readOnly
             />
           </div>
@@ -328,7 +335,7 @@ export default function CreateEvent() {
               name="creatorName"
               type="text"
               value={user?.displayName}
-              className="w-full bg-gray-100 dark:bg-gray-700"
+              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
               readOnly
             />
           </div>
@@ -343,6 +350,6 @@ export default function CreateEvent() {
           </Button>
         </div>
       </form>
-    </div>
+    </Card>
   );
 }
