@@ -1,12 +1,56 @@
-# React + Vite
+# 🛍️ Project Name: Athletic Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Athletic Hub** is an Athletic Event Booking Platform that connects athletes and sports lovers with local athletic events. Users can browse, book, and manage events easily. It is built using React, Express, MongoDB, and styled with Tailwind CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Links
 
-## Expanding the ESLint configuration
+- Client: [https://athletichub-ce630.web.app](https://athletichub-ce630.web.app)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- Responsive design for all devices
+- Firebase auth (email/password + Google)
+- JWT protected routes
+- Create, update, delete events (organizers only)
+- Book and cancel events
+- View bookings (table or card layout)
+- Search events by name/location
+- Dark mode supported
+- SweetAlert and toast notifications
+- Framer motion animations
+- Custom 404 page and loading spinners
+
+---
+
+## 🔐 Security
+
+- HTTP-only cookies for JWT
+- CORS properly configured
+- Clear-cookie when logout
+
+---
+
+## 🧱 Packages Used
+
+| Tech              | Purpose                         |
+| ----------------- | ------------------------------- |
+| **React**         | UI library                      |
+| **React Router**  | Client-side routing             |
+| **Tailwind CSS**  | Utility-first CSS framework     |
+| **ShadCN UI**     | Tailwind-based UI components    |
+| **SweetAlert2**   | Alert and confirmation popups   |
+| **Lucide React**  | Icon library                    |
+| **Swiper**        | Image carousel/slider           |
+| **Framer Motion** | Smooth animations               |
+| **Date-Fns**      | Date formatting utilities       |
+| **Axios**         | HTTP requests                   |
+| **Firebase**      | Auth and hosting                |
+| **Express**       | Backend server                  |
+| **MongoDB**       | Database                        |
+| **dotenv**        | Environment variable management |
+
+---
