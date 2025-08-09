@@ -45,6 +45,50 @@ const Navbar = () => {
       >
         Events
       </NavLink>
+      {user && (
+        <>
+          <NavLink
+            to="/create-event"
+            className={({ isActive }) =>
+              `text-base font-medium transition-colors hover:text-primary ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
+          >
+            Create Event
+          </NavLink>
+          <NavLink
+            to="/manage-events"
+            className={({ isActive }) =>
+              `text-base font-medium transition-colors hover:text-primary ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
+          >
+            Manage Events
+          </NavLink>
+          <NavLink
+            to="/my-bookings"
+            className={({ isActive }) =>
+              `text-base font-medium transition-colors hover:text-primary ${
+                isActive ? "text-primary" : "text-muted-foreground"
+              }`
+            }
+          >
+            My Bookings
+          </NavLink>
+        </>
+      )}
+      <NavLink
+        to="/blog"
+        className={({ isActive }) =>
+          `text-base font-medium transition-colors hover:text-primary ${
+            isActive ? "text-primary" : "text-muted-foreground"
+          }`
+        }
+      >
+        Blog
+      </NavLink>
     </>
   );
 
@@ -64,8 +108,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full dark:bg-black border-b">
-      <div className="w-full mx-auto flex h-16 items-center justify-between px-4">
+    <nav className="sticky top-0 z-50 w-full bg-card dark:bg-black border-b">
+      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {/* Mobile menu button */}
           <div className="flex items-center gap-4 lg:hidden">
@@ -145,18 +189,6 @@ const Navbar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
                   <Link to="/my-profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/create-event">Create Event</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/events">Book Event</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/my-bookings">My Bookings</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/manage-events">Manage Events</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleLogout}>
                   Logout
