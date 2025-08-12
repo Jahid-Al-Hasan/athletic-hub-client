@@ -1190,7 +1190,7 @@ const Error = () => {
           </div>
 
           <motion.p
-            className="text-xl mb-6"
+            className="text-base md:text-lg lg:text-xl mb-4 lg:mb-6"
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -1205,7 +1205,7 @@ const Error = () => {
           >
             <Link
               to="/"
-              className="inline-block border-2 border-primary px-6 py-3 rounded-full shadow-md hover:bg-primary transition"
+              className="inline-block border-2 border-primary px-4 py-2 lg:px-6 lg:py-3 rounded-full shadow-md hover:bg-primary transition"
             >
               Go Back Home
             </Link>

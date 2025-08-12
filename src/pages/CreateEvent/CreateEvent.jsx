@@ -159,7 +159,7 @@ export default function CreateEvent() {
                 <Button
                   variant="outline"
                   id="date"
-                  className="w-48 justify-between font-normal border-primary"
+                  className="w-48 justify-between font-normal border-primary dark:border-primary"
                 >
                   {date ? date.toLocaleDateString() : "Select date"}
                   <ChevronDownIcon />
@@ -281,7 +281,7 @@ export default function CreateEvent() {
               id="capacity"
               name="capacity"
               type="number"
-              className="w-full bg-gray-100 dark:bg-gray-700"
+              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
               required
             />
           </div>
@@ -342,10 +342,7 @@ export default function CreateEvent() {
         </div>
 
         <div className="flex justify-end">
-          <Button
-            type="submit"
-            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white cursor-pointer"
-          >
+          <Button type="submit" className="cursor-pointer">
             Create Event
           </Button>
         </div>

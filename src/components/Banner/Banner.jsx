@@ -44,28 +44,28 @@ export const Banner = () => {
               style={{ backgroundImage: `url(${event?.pictureUrl})` }}
             >
               {/* Dark overlay */}
-              <div className="absolute inset-0 bg-black/80" />
+              <div className="absolute inset-0 bg-black/60" />
 
               {/* Content container */}
               <div className="mx-auto relative z-10 h-full flex items-center justify-center text-center">
                 <div className="max-w-2xl space-y-6 text-white">
                   {/* Title */}
-                  <h1 className="animate__animated animate__fadeInDownBig text-4xl md:text-5xl font-bold tracking-tight">
+                  <h1 className="animate__animated animate__fadeInDownBig text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">
                     {event?.name}
                   </h1>
 
                   {/* Subtitle */}
                   <Badge
                     variant="outline"
-                    className="animate__animated animate__fadeInDownBig h-8 border-primary"
+                    className="animate__animated animate__fadeInDownBig h-7 lg:h-8 text-sm lg:text-base border-2 border-primary"
                   >
-                    <p className="text-xl text-muted-foreground">
+                    <p className="text-sm md:text-base lg:text-xl text-white">
                       {event?.category}
                     </p>
                   </Badge>
 
                   {/* Description */}
-                  <p className="animate__animated animate__fadeInUpBig text-lg">
+                  <p className="animate__animated animate__fadeInUpBig text-base lg:text-lg">
                     {event?.description}
                   </p>
 
@@ -73,7 +73,7 @@ export const Banner = () => {
                   <div className="animate__animated animate__fadeInUpBig flex flex-wrap justify-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
-                      <span>{event?.date.slice("T")[0]}</span>
+                      <span>{event?.date.split("T")[0]}</span>
                     </div>
                     {/* <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4" />
