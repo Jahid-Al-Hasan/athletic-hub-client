@@ -23,7 +23,7 @@ const EventCard = ({ event }) => {
     <div>
       <Card
         key={event._id}
-        className="group hover:shadow-xl transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30 h-full pt-0"
+        className="group hover:shadow-md transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30 h-full pt-0"
       >
         <CardHeader className="relative p-0">
           {/* Image with overlay effect */}
@@ -83,7 +83,8 @@ const EventCard = ({ event }) => {
         <CardFooter className="px-5 pb-5">
           <Button
             asChild
-            className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all shadow-lg hover:shadow-primary/20"
+            variant="outline"
+            className="w-full border-2 bg-card hover:bg-primary dark:hover:bg-primary border-primary dark:border-primary"
           >
             <Link to={`/event/${event?._id}`}>View Details</Link>
           </Button>

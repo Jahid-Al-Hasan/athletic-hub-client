@@ -22,6 +22,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { AuthContext } from "../../provider/AuthContext";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -89,7 +90,7 @@ const EventDetails = () => {
         {/* Event Header */}
         <div className="relative ">
           <img
-            src={event?.pictureUrl || "https://via.placeholder.com/800x400"}
+            src={event?.pictureUrl}
             alt={event?.name}
             className="w-full h-96 object-cover object-center rounded-t-2xl"
           />
@@ -110,13 +111,14 @@ const EventDetails = () => {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-semibold mb-4">Event Details</h2>
+            <Separator className="my-4" />
             <p className="mb-6">{event?.description}</p>
 
             <div className="space-y-4">
               <div className="flex items-start">
-                <Calendar className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0" />
+                <Calendar className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0 text-primary" />
                 <div>
-                  <h3 className="font-medium">Date & Time</h3>
+                  <h3 className="font-semibold">Date & Time</h3>
                   <p>
                     {format(new Date(event.date), "EEEE, MMMM do, yyyy")}
                     <br />
@@ -126,18 +128,18 @@ const EventDetails = () => {
               </div>
 
               <div className="flex items-start">
-                <MapPin className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0" />
+                <MapPin className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0 text-primary" />
                 <div>
-                  <h3 className="font-medium ">Location</h3>
+                  <h3 className="font-semibold ">Location</h3>
                   <p>{event.location}</p>
                 </div>
               </div>
 
               <div className="flex items-start">
-                <Users className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0" />
+                <Users className="h-5 w-5 mt-0.5 mr-3 flex-shrink-0 text-primary" />
                 <div>
-                  <h3 className="font-medium ">Participants</h3>
-                  <p className="">
+                  <h3 className="font-semibold">Participants</h3>
+                  <p className="font-medium">
                     {participantCount} registered (
                     {event?.capacity - participantCount} spots remaining)
                   </p>
@@ -172,13 +174,19 @@ const EventDetails = () => {
 
               <Button
                 onClick={() => handleBookEvent()}
-                disabled={disableBooking || participantCount >= event.capacity}
+                disabled={
+                  disableBooking ||
+                  participantCount >= event.capacity ||
+                  new Date(event.date) < new Date()
+                }
                 className="w-full cursor-pointer"
               >
                 {disableBooking ? (
                   "Already Booked!"
                 ) : participantCount >= event?.capacity ? (
                   "Event Full"
+                ) : new Date(event.date) < new Date() ? (
+                  "Event Ended"
                 ) : (
                   <>
                     <Ticket className="h-4 w-4 mr-2" />
