@@ -17,7 +17,7 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Create Event</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm opacity-60">
           Quickly set up new events with our intuitive creation tool. Customize
           event details, dates, and requirements to match your specific needs.
         </p>
@@ -33,7 +33,7 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Manage Event</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm opacity-60">
           Easily update and organize all your events in one place. Modify
           details, track registrations, and make real-time adjustments as
           needed.
@@ -50,7 +50,7 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Convenient Booking</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm opacity-60">
           Attendees can register with just a few clicks. Our streamlined booking
           process ensures a smooth experience for all participants.
         </p>
@@ -66,7 +66,7 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Secure Payments</h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm opacity-60">
           Handle registration fees effortlessly with our integrated payment
           system. Supports multiple payment methods for attendee convenience.
         </p>

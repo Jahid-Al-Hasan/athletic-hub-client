@@ -21,20 +21,11 @@ const FeaturedEvents = () => {
     .slice(0, 6); // Take first 6 events
 
   return (
-    <section className="py-12 px-4">
+    <section className="py-12 px-4 my-6">
       <div className="max-w-7xl mx-auto">
-        <div className="relative flex justify-center mb-8">
-          <h2 className="text-2xl lg:text-3xl font-bold">Featured Events</h2>
-          <div className="ml-auto">
-            <Button
-              asChild
-              variant="outline"
-              className="border-2 dark:border-blue-500"
-            >
-              <Link to="/events">See All Events</Link>
-            </Button>
-          </div>
-        </div>
+        <h2 className="text-2xl lg:text-3xl font-bold text-center mb-8">
+          Featured Events
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedEvents.map((event) => (

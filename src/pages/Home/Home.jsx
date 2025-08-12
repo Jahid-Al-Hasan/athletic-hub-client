@@ -5,6 +5,7 @@ import { Testimonial } from "../../components/Testimonial/Testimonial";
 import { PopularSports } from "../../components/PopularSports/PopularSports";
 import PageTitle from "../../utils/PageTitle/PageTitle";
 import OurFeatures from "../../components/OurFeatures/OurFeatures";
+import ConnectedUs from "../../components/ConnectedUs/ConnectedUs";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <OurFeatures />
       <section className="max-w-7xl mx-auto">
         <FeaturedEvents />
+        <ConnectedUs />
         <PopularSports />
         <Testimonial />
       </section>
