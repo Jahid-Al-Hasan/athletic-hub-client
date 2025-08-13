@@ -64,8 +64,11 @@ const router = createBrowserRouter([
         path: "event/:id",
         loader: async ({ params }) => {
           try {
+            // const response = await axios.get(
+            //   `https://athletichubserver.vercel.app/api/v1/event/${params.id}`
+            // );
             const response = await axios.get(
-              `https://athletichubserver.vercel.app/api/v1/event/${params.id}`
+              `http://localhost:3000/api/v1/event/${params.id}`
             );
             return response.data;
           } catch (error) {

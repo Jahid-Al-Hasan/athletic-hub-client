@@ -6,6 +6,7 @@ import { PopularSports } from "../../components/PopularSports/PopularSports";
 import PageTitle from "../../utils/PageTitle/PageTitle";
 import OurFeatures from "../../components/OurFeatures/OurFeatures";
 import ConnectedUs from "../../components/ConnectedUs/ConnectedUs";
+import NewsletterSignup from "../../components/NewsLetterSignup/NewsLetterSignup";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
         <ConnectedUs />
         <PopularSports />
         <Testimonial />
+        <NewsletterSignup />
       </section>
     </div>
   );
