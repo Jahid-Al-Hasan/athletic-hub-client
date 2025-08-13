@@ -80,14 +80,14 @@ const Navbar = () => {
         </>
       )}
       <NavLink
-        to="/blog"
+        to="/About"
         className={({ isActive }) =>
           `text-base font-medium transition-colors hover:text-primary ${
             isActive ? "text-primary" : "text-muted-foreground"
           }`
         }
       >
-        Blog
+        About
       </NavLink>
     </>
   );

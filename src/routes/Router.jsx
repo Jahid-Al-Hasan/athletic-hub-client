@@ -13,6 +13,7 @@ import axios from "axios";
 import EventDetails from "../pages/EventDetails/EventDetails";
 import { Loading } from "../components/Loading/Loading";
 import MyProfile from "../pages/MyProfile/MyProfile";
+import AboutPage from "../pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,15 @@ const router = createBrowserRouter([
       { path: "signup", Component: Register },
       {
         path: "my-profile",
-        Component: MyProfile,
+        element: (
+          <ProtectedRoute>
+            <MyProfile />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "about",
+        Component: AboutPage,
       },
       {
         path: "events",

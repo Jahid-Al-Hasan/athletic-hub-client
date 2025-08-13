@@ -68,8 +68,8 @@ const MyBookings = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <PageTitle title="My Bookings" />
-      <div className="flex justify-between items-start mb-6">
-        <h1 className="text-2xl font-bold">My Bookings</h1>
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between items-start mb-6">
+        <h1 className="text-xl lg:text-2xl font-bold">My Bookings</h1>
         <div className="flex flex-col md:flex-row gap-2">
           <Button
             variant={viewMode === "table" ? "default" : "outline"}
