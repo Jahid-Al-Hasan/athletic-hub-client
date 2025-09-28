@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+:root {
+  font-size: 16px;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -45,39 +49,39 @@
   --radius: 0.625rem;
 
   /* Base Colors */
-  --background: oklch(93.4% 0.0275 118.1); /* Soft blue-white */
-  --foreground: oklch(32.7% 0.0398 118.1); /* Deep teal-navy */
+  --background: oklch(100% 0 0); /* Pure white */
+  --foreground: oklch(28% 0.04 250); /* Deep navy for readability */
 
   /* Cards & Surfaces */
-  --card: oklch(90.1% 0.0394 118.1); /* Light blue-gray */
-  --card-foreground: oklch(0.25 0.04 118); /* Dark teal */
-  --popover: oklch(1 0 0); /* Pure white */
-  --popover-foreground: oklch(0.145 0 0); /* Near-black */
+  --card: oklch(100% 0 0); /* Pure white */
+  --card-foreground: oklch(28% 0.04 250); /* Navy text */
+  --popover: oklch(100% 0 0); /* Pure white */
+  --popover-foreground: oklch(15% 0.02 250); /* Almost black with blue hint */
 
   /* Primary Brand Color */
-  --primary: oklch(0.55 0.18 130); /* Vibrant teal */
-  --primary-foreground: oklch(0.99 0.005 130); /* Bright white */
+  --primary: oklch(0.58 0.18 180); /* New vibrant teal */
+  --primary-foreground: oklch(0.99 0.005 265); /* Crisp white */
 
   /* Secondary Colors */
-  --secondary: oklch(0.87 0.02 110); /* Pale green */
-  --secondary-foreground: oklch(0.28 0.03 110); /* Dark green */
+  --secondary: oklch(0.92 0.03 180); /* Light teal */
+  --secondary-foreground: oklch(0.28 0.04 230); /* Dark blue */
 
   /* Neutrals */
-  --muted: oklch(0.85 0.005 130); /* Light gray-blue */
-  --muted-foreground: oklch(0.55 0.01 130); /* Medium gray */
+  --muted: oklch(0.95 0.005 180); /* Very light teal-gray */
+  --muted-foreground: oklch(0.55 0.015 250); /* Medium gray-blue */
 
   /* Accents */
-  --accent: oklch(0.8 0.18 270); /* Purple */
-  --accent-foreground: oklch(0.99 0.005 270); /* Light purple */
+  --accent: oklch(0.65 0.16 320); /* Soft magenta */
+  --accent-foreground: oklch(0.99 0.005 310); /* White */
 
   /* Functional Colors */
   --destructive: oklch(0.62 0.18 25); /* Coral red */
   --destructive-foreground: oklch(0.99 0.005 25); /* White */
 
   /* Borders & Inputs */
-  --border: oklch(0.75 0.005 130); /* Medium gray-blue */
+  --border: oklch(0.9 0.008 180); /* Light teal-gray */
   --input: oklch(1 0 0 / 12%); /* Transparent white */
-  --ring: oklch(0.55 0.18 130); /* Teal focus ring */
+  --ring: oklch(0.58 0.18 180); /* Teal focus ring */
 
   /* Data Visualization */
   --chart-1: oklch(0.646 0.222 41.116); /* Orange */

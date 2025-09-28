@@ -34,7 +34,7 @@ export const Banner = () => {
         clickable: true,
         bulletClass: "swiper-pagination-bullet bg-primary",
       }}
-      className="h-[calc(100vh-80px)] w-full relative"
+      className="h-[100vh] w-full relative"
     >
       {events.length !== 0 &&
         events.map((event) => (

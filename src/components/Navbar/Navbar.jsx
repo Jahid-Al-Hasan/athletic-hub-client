@@ -1,6 +1,6 @@
 import { Menu, Moon, Sun, User } from "lucide-react";
-import React, { useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import { ThemeContext } from "../../provider/ThemeContext";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,14 +22,35 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const { theme, setTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
+
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!isHome) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
 
   const links = (
     <>
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `text-base font-medium transition-colors hover:text-primary ${
-            isActive ? "text-primary" : "text-muted-foreground"
+          `text-base font-medium transition-colors hover:text-white/70 ${
+            isActive ? "text-white/70" : "text-white"
           }`
         }
       >
@@ -38,8 +59,8 @@ const Navbar = () => {
       <NavLink
         to="/events"
         className={({ isActive }) =>
-          `text-base font-medium transition-colors hover:text-primary ${
-            isActive ? "text-primary" : "text-muted-foreground"
+          `text-base font-medium transition-colors hover:text-white/70 ${
+            isActive ? "text-white/70" : "text-white"
           }`
         }
       >
@@ -50,8 +71,8 @@ const Navbar = () => {
           <NavLink
             to="/create-event"
             className={({ isActive }) =>
-              `text-base font-medium transition-colors hover:text-primary ${
-                isActive ? "text-primary" : "text-muted-foreground"
+              `text-base font-medium transition-colors hover:text-white/70 ${
+                isActive ? "text-white/70" : "text-white"
               }`
             }
           >
@@ -60,8 +81,8 @@ const Navbar = () => {
           <NavLink
             to="/manage-events"
             className={({ isActive }) =>
-              `text-base font-medium transition-colors hover:text-primary ${
-                isActive ? "text-primary" : "text-muted-foreground"
+              `text-base font-medium transition-colors hover:text-white/70 ${
+                isActive ? "text-white/70" : "text-white"
               }`
             }
           >
@@ -70,8 +91,8 @@ const Navbar = () => {
           <NavLink
             to="/my-bookings"
             className={({ isActive }) =>
-              `text-base font-medium transition-colors hover:text-primary ${
-                isActive ? "text-primary" : "text-muted-foreground"
+              `text-base font-medium transition-colors hover:text-white/70 ${
+                isActive ? "text-white/70" : "text-white"
               }`
             }
           >
@@ -82,8 +103,8 @@ const Navbar = () => {
       <NavLink
         to="/About"
         className={({ isActive }) =>
-          `text-base font-medium transition-colors hover:text-primary ${
-            isActive ? "text-primary" : "text-muted-foreground"
+          `text-base font-medium transition-colors hover:text-white/70 ${
+            isActive ? "text-white/70" : "text-white"
           }`
         }
       >
@@ -108,7 +129,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-card dark:bg-black border-b">
+    <nav
+      className={`fixed top-0 z-50 w-full backdrop-blur-2xl ${
+        isHome
+          ? scrolled
+            ? "bg-primary dark:bg-black/30 shadow-md"
+            : "bg-transparent"
+          : "bg-primary dark:bg-black/30"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           {/* Mobile menu button */}
@@ -116,12 +145,12 @@ const Navbar = () => {
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="flex flex-col gap-4 pt-10 w-44 pl-3"
+                className="flex flex-col gap-4 bg-black/60 pt-10 w-44 pl-3"
               >
                 {links}
               </SheetContent>
@@ -132,9 +161,9 @@ const Navbar = () => {
           <div>
             <Link to="/" className="flex items-center gap-2">
               <img src="/logo.png" alt="logo" className="w-6 lg:w-7" />
-              <h2 className="text-xl lg:text-2xl font-bold">
-                <span className="text-blue-700">Athletic</span>Hub
-              </h2>
+              <h4 className="text-xl lg:text-2xl font-bold text-chart-5">
+                AthleticHub
+              </h4>
             </Link>
           </div>
         </div>
@@ -145,12 +174,12 @@ const Navbar = () => {
         </div>
 
         {/* User section */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 lg:gap-4">
           <Button
             variant="ghost"
             size="icon"
             onClick={handleTheme}
-            className="h-9 w-9 border-secondary border"
+            className="h-9 w-9 border-white border text-white hover:bg-primary cursor-pointer rounded-sm"
           >
             {theme === "light" ? (
               <Moon className="h-5 w-5" />
@@ -167,7 +196,7 @@ const Navbar = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-9 w-9 rounded-full border-secondary border"
+                      className="h-10 w-10 rounded-full border-white border cursor-pointer"
                     >
                       {user.photoURL || user.photoURL !== null ? (
                         <img

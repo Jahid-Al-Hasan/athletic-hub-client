@@ -15,7 +15,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral text-neutral-content mt-auto border-t bg-[#8B975E] dark:bg-gray-950">
+    <footer className="mt-auto border-t bg-sidebar-primary dark:bg-gray-950 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Brand Info */}
@@ -24,9 +24,9 @@ const Footer = () => {
             <div>
               <Link to="/" className="flex items-center gap-2">
                 <img src="/logo.png" alt="logo" className="w-6" />
-                <h2 className="text-xl font-bold">
-                  <span className="text-blue-700">Athletic</span>Hub
-                </h2>
+                <h4 className="text-xl lg:text-2xl font-bold text-chart-5">
+                  AthleticHub
+                </h4>
               </Link>
             </div>
             <p className="text-sm opacity-80">

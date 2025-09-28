@@ -8,7 +8,7 @@ const OurFeatures = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
       {/* Create Event Card */}
-      <div className="border border-accent-foreground dark:border-gray-800 p-8 flex flex-col items-center text-center hover:bg-accent transition-colors duration-300 h-full">
+      <div className="border border-b-2 border-gray-100 dark:border-gray-900 p-8 flex flex-col items-center text-center hover:bg-secondary transition-colors duration-300 h-full">
         <div className="mb-6">
           <img
             src={event}
@@ -17,14 +17,14 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Create Event</h2>
-        <p className="text-sm opacity-60">
+        <p className="text-sm opacity-80">
           Quickly set up new events with our intuitive creation tool. Customize
           event details, dates, and requirements to match your specific needs.
         </p>
       </div>
 
       {/* Manage Event Card */}
-      <div className="border border-accent-foreground dark:border-gray-800 p-8 flex flex-col items-center text-center hover:bg-accent transition-colors duration-300 h-full">
+      <div className="border border-b-2 border-gray-100 dark:border-gray-900 p-8 flex flex-col items-center text-center hover:bg-secondary transition-colors duration-300 h-full">
         <div className="mb-6">
           <img
             src={management}
@@ -33,7 +33,7 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Manage Event</h2>
-        <p className="text-sm opacity-60">
+        <p className="text-sm opacity-80">
           Easily update and organize all your events in one place. Modify
           details, track registrations, and make real-time adjustments as
           needed.
@@ -41,7 +41,7 @@ const OurFeatures = () => {
       </div>
 
       {/* Booking Card */}
-      <div className="border border-accent-foreground dark:border-gray-800 p-8 flex flex-col items-center text-center hover:bg-accent transition-colors duration-300 h-full">
+      <div className="border border-b-2 border-gray-100 dark:border-gray-900 p-8 flex flex-col items-center text-center hover:bg-secondary transition-colors duration-300 h-full">
         <div className="mb-6">
           <img
             src={booking}
@@ -50,14 +50,14 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Convenient Booking</h2>
-        <p className="text-sm opacity-60">
+        <p className="text-sm opacity-80">
           Attendees can register with just a few clicks. Our streamlined booking
           process ensures a smooth experience for all participants.
         </p>
       </div>
 
       {/* Payment Card */}
-      <div className="border border-accent-foreground dark:border-gray-800 p-8 flex flex-col items-center text-center hover:bg-accent transition-colors duration-300 h-full">
+      <div className="border border-b-2 border-gray-100 dark:border-gray-900 p-8 flex flex-col items-center text-center hover:bg-secondary transition-colors duration-300 h-full">
         <div className="mb-6">
           <img
             src={payment}
@@ -66,7 +66,7 @@ const OurFeatures = () => {
           />
         </div>
         <h2 className="text-lg font-bold mb-3">Secure Payments</h2>
-        <p className="text-sm opacity-60">
+        <p className="text-sm opacity-80">
           Handle registration fees effortlessly with our integrated payment
           system. Supports multiple payment methods for attendee convenience.
         </p>
