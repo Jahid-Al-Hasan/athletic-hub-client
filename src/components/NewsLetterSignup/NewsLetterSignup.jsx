@@ -47,7 +47,7 @@ const NewsletterSignup = () => {
 
   return (
     <div className="w-full px-4 py-12 flex justify-center">
-      <Card className="border-none shadow-none w-full rounded-2xl overflow-hidden flex flex-col md:flex-row bg-card/80">
+      <Card className="border-none shadow-md w-full rounded-2xl overflow-hidden flex flex-col md:flex-row">
         {/* Left Section */}
         <div className="flex-1/3 p-8 flex flex-col justify-center text-center md:text-left">
           <h2 className="text-xl md:text-2xl font-bold  leading-tight">
@@ -71,8 +71,8 @@ const NewsletterSignup = () => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="John Doe"
-                  className="border border-primary"
+                  placeholder="Name"
+                  className="shadow-black/20 dark:shadow-white/20 shadow-sm"
                   required
                 />
               </div>
@@ -83,8 +83,8 @@ const NewsletterSignup = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  className="border border-primary"
+                  placeholder="email@domain.com"
+                  className="shadow-black/20 dark:shadow-white/20 shadow-sm"
                   required
                 />
               </div>

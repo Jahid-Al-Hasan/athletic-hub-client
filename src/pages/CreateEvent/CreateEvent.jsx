@@ -30,6 +30,7 @@ import { format } from "date-fns";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import PageTitle from "../../utils/PageTitle/PageTitle";
+import { Link, useNavigate } from "react-router";
 
 const eventTypes = [
   "Swimming",
@@ -51,6 +52,7 @@ export default function CreateEvent() {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(undefined);
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,6 +83,7 @@ export default function CreateEvent() {
               icon: "success",
               draggable: true,
             });
+            navigate("/manage-events");
           } else {
             Swal.fire({
               title: res?.data?.message,
@@ -96,257 +99,270 @@ export default function CreateEvent() {
   };
 
   return (
-    <Card className="max-w-2xl mx-auto p-6 rounded-lg shadow-md my-4">
-      <PageTitle title="Create Event" />
-      <h2 className="text-2xl font-bold mb-6">Create New Event</h2>
+    <div className="py-24 px-4">
+      <Card className="max-w-2xl mx-auto p-6 rounded-lg shadow-md my-4">
+        <PageTitle title="Create Event" />
+        <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+          Create New Event
+        </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Event Name */}
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >
-            Event Name *
-          </label>
-          <Input
-            id="name"
-            name="name"
-            type="text"
-            className="w-full border-primary"
-            placeholder="Enter event name"
-            required
-          />
-        </div>
-
-        {/* Category */}
-        <div>
-          <label
-            htmlFor="category"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >
-            Category *
-          </label>
-          <Select name="category" required>
-            <SelectTrigger className="w-full border-primary">
-              <SelectValue placeholder="Select an event type" />
-            </SelectTrigger>
-            <SelectContent className="dark:bg-gray-800">
-              {eventTypes.map((type) => (
-                <SelectItem
-                  key={type}
-                  value={type}
-                  className="dark:hover:bg-gray-700"
-                >
-                  {type}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Event Date */}
-        <div className="flex gap-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Event Name */}
           <div>
             <label
-              htmlFor="date"
+              htmlFor="name"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              Event Date *
-            </label>
-            <Popover open={open} onOpenChange={setOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  id="date"
-                  className="w-48 justify-between font-normal border-primary dark:border-primary"
-                >
-                  {date ? date.toLocaleDateString() : "Select date"}
-                  <ChevronDownIcon />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent
-                className="w-auto overflow-hidden p-0"
-                align="start"
-              >
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  captionLayout="dropdown"
-                  onSelect={(date) => {
-                    setDate(date);
-                    setOpen(false);
-                  }}
-                />
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div>
-            <label
-              htmlFor="time"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              Event Time *
+              Event Name *
             </label>
             <Input
-              name="time"
-              type="time"
-              id="time"
-              // value={time}
-              // onChange={(e) => setTime(e.target.value)}
-              step="1"
-              defaultValue="10:30:00"
-              className="border-primary bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
-            />
-          </div>
-        </div>
-
-        {/* location */}
-        <div>
-          <label
-            htmlFor="location"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >
-            Location *
-          </label>
-          <Input
-            id="location"
-            name="location"
-            type="text"
-            className="w-full md:w-1/2 bg-gray-100 dark:bg-gray-700 border-primary"
-            required
-          />
-        </div>
-
-        {/* Description */}
-        <div>
-          <label
-            htmlFor="description"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >
-            Description *
-          </label>
-          <Textarea
-            id="description"
-            name="description"
-            className="w-full min-h-[100px] border-primary"
-            placeholder="Enter event description"
-            required
-          />
-        </div>
-
-        {/* Image URL */}
-        <div>
-          <label
-            htmlFor="pictureUrl"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >
-            Event Image URL
-          </label>
-          <Input
-            id="pictureUrl"
-            name="pictureUrl"
-            type="url"
-            className="w-full border-primary"
-            placeholder="https://example.com/image.jpg"
-          />
-        </div>
-
-        {/* registration fee and capacity */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="registrationFee"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              Registration Fee *
-            </label>
-            <Input
-              id="registrationFee"
-              name="registrationFee"
-              type="number"
-              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
-              required
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="capacity"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              Capacity *
-            </label>
-            <Input
-              id="capacity"
-              name="capacity"
-              type="number"
-              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
-              required
-            />
-          </div>
-        </div>
-
-        {/* organizer */}
-        <div>
-          <label
-            htmlFor="organizer"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-          >
-            Organizer *
-          </label>
-          <Input
-            id="organizer"
-            name="organizer"
-            type="text"
-            className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
-            required
-          />
-        </div>
-
-        {/* Creator Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="creatorEmail"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              Creator Email
-            </label>
-            <Input
-              id="creatorEmail"
-              name="creatorEmail"
-              type="email"
-              value={user?.email}
-              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
-              readOnly
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="creatorName"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              Creator Name
-            </label>
-            <Input
-              id="creatorName"
-              name="creatorName"
+              id="name"
+              name="name"
               type="text"
-              value={user?.displayName}
-              className="w-full bg-gray-100 dark:bg-gray-700 border-primary"
-              readOnly
+              className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm"
+              placeholder="Enter event name"
+              required
             />
           </div>
-        </div>
 
-        <div className="flex justify-end">
-          <Button type="submit" className="cursor-pointer">
-            Create Event
-          </Button>
-        </div>
-      </form>
-    </Card>
+          {/* Category */}
+          <div>
+            <label
+              htmlFor="category"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Category *
+            </label>
+            <Select name="category" required>
+              <SelectTrigger className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm">
+                <SelectValue placeholder="Select an event type" />
+              </SelectTrigger>
+              <SelectContent className="dark:bg-gray-800">
+                {eventTypes.map((type) => (
+                  <SelectItem
+                    key={type}
+                    value={type}
+                    className="dark:hover:bg-gray-700"
+                  >
+                    {type}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Event Date */}
+          <div className="flex gap-4">
+            <div>
+              <label
+                htmlFor="date"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Event Date *
+              </label>
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    id="date"
+                    className="w-48 justify-between font-normal border shadow-black/30 dark:shadow-white/30 shadow-sm"
+                  >
+                    {date ? date.toLocaleDateString() : "Select date"}
+                    <ChevronDownIcon />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto overflow-hidden p-0"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    captionLayout="dropdown"
+                    onSelect={(date) => {
+                      setDate(date);
+                      setOpen(false);
+                    }}
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div>
+              <label
+                htmlFor="time"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Event Time *
+              </label>
+              <Input
+                name="time"
+                type="time"
+                id="time"
+                // value={time}
+                // onChange={(e) => setTime(e.target.value)}
+                step="1"
+                defaultValue="10:30:00"
+                className="border shadow-black/30 dark:shadow-white/30 shadow-sm appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+              />
+            </div>
+          </div>
+
+          {/* location */}
+          <div>
+            <label
+              htmlFor="location"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Location *
+            </label>
+            <Input
+              id="location"
+              name="location"
+              type="text"
+              className="w-full md:w-1/2 border shadow-black/30 dark:shadow-white/30 shadow-sm"
+              placeholder="Address"
+              required
+            />
+          </div>
+
+          {/* Description */}
+          <div>
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Description *
+            </label>
+            <Textarea
+              id="description"
+              name="description"
+              className="w-full min-h-[100px] border shadow-black/30 dark:shadow-white/30 shadow-sm"
+              placeholder="Enter event description"
+              required
+            />
+          </div>
+
+          {/* Image URL */}
+          <div>
+            <label
+              htmlFor="pictureUrl"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Event Image URL
+            </label>
+            <Input
+              id="pictureUrl"
+              name="pictureUrl"
+              type="url"
+              className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm"
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
+
+          {/* registration fee and capacity */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="registrationFee"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Registration Fee *
+              </label>
+              <Input
+                id="registrationFee"
+                name="registrationFee"
+                type="number"
+                className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm"
+                placeholder="$"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="capacity"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Capacity *
+              </label>
+              <Input
+                id="capacity"
+                name="capacity"
+                type="number"
+                className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm"
+                placeholder="Capacity"
+                required
+              />
+            </div>
+          </div>
+
+          {/* organizer */}
+          <div>
+            <label
+              htmlFor="organizer"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Organizer *
+            </label>
+            <Input
+              id="organizer"
+              name="organizer"
+              type="text"
+              className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm"
+              placeholder="Organizer name"
+              required
+            />
+          </div>
+
+          {/* Creator Email */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="creatorEmail"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Creator Email
+              </label>
+              <Input
+                id="creatorEmail"
+                name="creatorEmail"
+                type="email"
+                value={user?.email}
+                className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm cursor-not-allowed"
+                readOnly
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="creatorName"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
+                Creator Name
+              </label>
+              <Input
+                id="creatorName"
+                name="creatorName"
+                type="text"
+                value={user?.displayName}
+                className="w-full border shadow-black/30 dark:shadow-white/30 shadow-sm cursor-not-allowed"
+                readOnly
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-2">
+            <Link to={-1}>
+              <Button variant="destructive" className="cursor-pointer">
+                Cancel
+              </Button>
+            </Link>
+            <Button type="submit" className="cursor-pointer">
+              Create Event
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
   );
 }

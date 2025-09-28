@@ -87,12 +87,14 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-65px)] my-6">
+    <div className="flex items-center justify-center min-h-[100vh] py-24 px-4">
       <PageTitle title="Register" />
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Create new account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-xl lg:text-2xl text-center">
+            Create new account
+          </CardTitle>
+          <CardDescription className="text-center">
             Enter valid information to create your account
           </CardDescription>
         </CardHeader>
@@ -110,7 +112,7 @@ const Register = () => {
                 id="name"
                 placeholder="your name"
                 value={name}
-                className="border-primary"
+                className="border shadow-black/30 dark:shadow-white/30 shadow-sm"
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -124,7 +126,7 @@ const Register = () => {
                 type="text"
                 id="photoUrl"
                 placeholder="https://...."
-                className="border-primary"
+                className="border shadow-black/30 dark:shadow-white/30 shadow-sm"
               />
             </div>
             {/* email */}
@@ -136,7 +138,7 @@ const Register = () => {
                 type="email"
                 id="email"
                 placeholder="your@email.com"
-                className="border-primary"
+                className="border shadow-black/30 dark:shadow-white/30 shadow-sm"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -153,7 +155,7 @@ const Register = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="pl-10 pr-10 border-primary"
+                className="pl-10 pr-10 border shadow-black/30 dark:shadow-white/30 shadow-sm"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$"
@@ -176,7 +178,7 @@ const Register = () => {
                 )}
               </button>
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full cursor-pointer">
               Signup
             </Button>
           </form>
@@ -186,7 +188,7 @@ const Register = () => {
           <Button
             onClick={handleGoogleLogin}
             variant="outline"
-            className="w-full border-primary"
+            className="w-full cursor-pointer border shadow-black/30 dark:shadow-white/30 shadow-sm hover:bg-primary dark:hover:bg-primary"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

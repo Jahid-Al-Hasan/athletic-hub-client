@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Navbar from "../../components/Navbar/Navbar";
 import PageTitle from "../../utils/PageTitle/PageTitle";
 import "./error.css";
+import { Button } from "@/components/ui/button";
 
 const Error = () => {
   return (
-    <div className="bg-background">
+    <div className="relative bg-background dark:bg-background">
       <PageTitle title="ERROR" />
       <Navbar />
-      <div className="place-content-center place-items-center">
-        <div className="min-h-[calc(100vh-82px)] flex flex-col   text-center px-4">
+      <div className="place-content-center place-items-center  min-h-screen py-24">
+        <div className="flex flex-col   text-center px-4">
           <div>
             <div className="my-12">
               <div className="w-full">
@@ -1203,11 +1204,8 @@ const Error = () => {
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
           >
-            <Link
-              to="/"
-              className="inline-block border-2 border-primary px-4 py-2 lg:px-6 lg:py-3 rounded-full shadow-md hover:bg-primary transition"
-            >
-              Go Back Home
+            <Link to="/">
+              <Button className="cursor-pointer">Go Back Home</Button>
             </Link>
           </motion.div>
         </div>

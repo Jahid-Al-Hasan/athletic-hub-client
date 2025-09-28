@@ -49,26 +49,28 @@ const AllEvents = () => {
   }, [allEvents, searchTerm, sortby]);
 
   return (
-    <div className="px-4 py-8">
+    <div className="px-4 pb-8 pt-24">
       <PageTitle title="Events" />
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-          <h2 className="text-2xl font-bold tracking-tight">All Events</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
+            All Events
+          </h2>
 
           <div className="flex flex-col-reverse md:flex-row gap-2">
             <div className="relative max-w-64">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4  text-primary" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
               <Input
                 type="text"
                 placeholder="Search events..."
-                className="pl-10 border-primary border rounded-none"
+                className="pl-10 shadow-black/30 dark:shadow-white/30 shadow-sm rounded-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div>
               <Select onValueChange={(value) => setSortby(value)}>
-                <SelectTrigger className="border border-primary rounded-none">
+                <SelectTrigger className="shadow-black/30 dark:shadow-white/30 shadow-sm rounded-none">
                   <ArrowDownUp />
                   <SelectValue placeholder="Sort By" />
                 </SelectTrigger>
@@ -100,7 +102,7 @@ const AllEvents = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {events.map((event) => (
               <EventCard key={event?._id} event={event} />
             ))}

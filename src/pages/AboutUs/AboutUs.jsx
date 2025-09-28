@@ -16,156 +16,163 @@ import { Link } from "react-router";
 
 export default function AboutPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <section className="mb-16">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Complete Event Management Solution
-          </h2>
-          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Everything you need to create, manage, and monetize athletic events
-          </p>
-        </div>
+    <div className="py-24">
+      <div className="max-w-7xl mx-auto px-4">
+        {/*  */}
+        <section className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+              Complete Event Management Solution
+            </h2>
+            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+              Everything you need to create, manage, and monetize athletic
+              events
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Card className="p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <CalendarIcon className="h-6 w-6 text-primary" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-6">
+            <Card className="p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <CalendarIcon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Event Creation</h3>
+                  <p className="text-muted-foreground">
+                    Set up events with custom rules, schedules, and registration
+                    options
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">Event Creation</h3>
-                <p className="text-muted-foreground">
-                  Set up events with custom rules, schedules, and registration
-                  options
-                </p>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <UserPlus2Icon className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">User Profiles</h3>
-                <p className="text-muted-foreground">
-                  Athletes create profiles with performance history and
-                  credentials
-                </p>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <CreditCardIcon className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">
-                  Registration & Payments
-                </h3>
-                <p className="text-muted-foreground">
-                  Secure payment processing with flexible fee structures
-                </p>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <SettingsIcon className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">Event Dashboard</h3>
-                <p className="text-muted-foreground">
-                  Real-time management of participants, schedules, and
-                  communications
-                </p>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <TrophyIcon className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">
-                  Results & Analytics
-                </h3>
-                <p className="text-muted-foreground">
-                  Live scoring, standings, and post-event reports
-                </p>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg bg-primary/10">
-                <BookOpenIcon className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">Easy Booking</h3>
-                <p className="text-muted-foreground">
-                  One-click registration for participants with automatic
-                  confirmations
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      <section className="mb-16">
-        <div className="text-center mb-12">
-          <Badge variant="outline" className="mb-4">
-            Our Team
-          </Badge>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Meet the AthleticHub Team
-          </h2>
-          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Passionate sports enthusiasts and technology experts
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {TEAM_MEMBERS.map((member) => (
-            <Card
-              key={member.id}
-              className="text-center p-6 hover:shadow-md transition-shadow"
-            >
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 overflow-hidden flex items-center justify-center">
-                <UserIcon className="h-10 w-10 text-primary" />
-              </div>
-              <h3 className="font-semibold text-lg">{member.name}</h3>
-              <p className="text-muted-foreground mb-2">{member.role}</p>
-              <p className="text-sm text-muted-foreground">{member.bio}</p>
             </Card>
-          ))}
-        </div>
-      </section>
 
-      <section className="text-center">
-        <Card className="p-8 bg-secondary/50">
-          <h2 className="text-xl lg:text-2xl font-bold mb-4">
-            Ready to Organize Your Next Event?
-          </h2>
-          <p className="text-sm lg:text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Join hundreds of event organizers using AthleticHub for seamless
-            competition management
-          </p>
-          <Link to="/create-event">
-            <Button>Create Your First Event</Button>
-          </Link>
-        </Card>
-      </section>
+            <Card className="p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <UserPlus2Icon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">User Profiles</h3>
+                  <p className="text-muted-foreground">
+                    Athletes create profiles with performance history and
+                    credentials
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <CreditCardIcon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Registration & Payments
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Secure payment processing with flexible fee structures
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <SettingsIcon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Event Dashboard
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Real-time management of participants, schedules, and
+                    communications
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <TrophyIcon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Results & Analytics
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Live scoring, standings, and post-event reports
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 hover:shadow-md transition-shadow">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <BookOpenIcon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Easy Booking</h3>
+                  <p className="text-muted-foreground">
+                    One-click registration for participants with automatic
+                    confirmations
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </section>
+
+        {/* Athletichub team */}
+        <section className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+              Meet the AthleticHub <br className="md:hidden" /> Team
+            </h2>
+            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+              Passionate sports enthusiasts and technology experts
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 lg:gap-6">
+            {TEAM_MEMBERS.map((member) => (
+              <Card
+                key={member.id}
+                className="text-center p-2 lg:p-6 hover:shadow-md transition-shadow"
+              >
+                <div className="w-20 h-20 mx-auto mb-1 lg:mb-4 rounded-full bg-primary/10 overflow-hidden flex items-center justify-center">
+                  <UserIcon className="h-10 w-10 text-primary" />
+                </div>
+                <h3 className="font-semibold text-lg">{member.name}</h3>
+                <p className="text-muted-foreground lg:mb-2">{member.role}</p>
+                <p className="text-sm text-muted-foreground">{member.bio}</p>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* organize your next event card */}
+        <section className="text-center">
+          <Card className="p-8">
+            <h2 className="text-xl lg:text-2xl font-bold">
+              Ready to Organize Your Next Event?
+            </h2>
+            <p className="text-sm lg:text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Join hundreds of event organizers using AthleticHub for seamless
+              competition management
+            </p>
+            <Link to="/create-event">
+              <Button className="cursor-pointer">
+                Create Your First Event
+              </Button>
+            </Link>
+          </Card>
+        </section>
+      </div>
     </div>
   );
 }

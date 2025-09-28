@@ -36,14 +36,14 @@ const Banner = () => {
 
             <div className="flex flex-col lg:flex-row items-center gap-4 mb-8 w-full">
               <Link to="/events">
-                <Button size="lg" className="w-fit cursor-pointer">
+                <Button size="lg" className="w-44 cursor-pointer">
                   Find Events Near You
                 </Button>
               </Link>
               <Link to="/create-event">
                 <Button
                   size="lg"
-                  className="w-fit text-black bg-white cursor-pointer"
+                  className="w-44 text-black bg-white cursor-pointer"
                 >
                   Create Your Event
                 </Button>

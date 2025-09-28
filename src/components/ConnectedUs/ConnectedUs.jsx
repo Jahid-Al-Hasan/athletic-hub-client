@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import club_1 from "../../assets/clubLogos/club-1.png";
 import club_2 from "../../assets/clubLogos/club-2.png";
 import club_3 from "../../assets/clubLogos/club-3.png";

@@ -23,7 +23,7 @@ const EventCard = ({ event }) => {
     <div>
       <Card
         key={event._id}
-        className="group hover:shadow-md transition-all duration-300 overflow-hidden border border-border/50 hover:border-primary/30 h-full pt-0"
+        className="group hover:shadow-md transition-all duration-300 overflow-hidden h-full pt-0"
       >
         <CardHeader className="relative p-0">
           {/* Image with overlay effect */}
@@ -38,7 +38,7 @@ const EventCard = ({ event }) => {
           </div>
 
           {/* Category badge */}
-          <span className="absolute top-3 right-3 px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full shadow-sm">
+          <span className="absolute top-3 right-3 px-3 py-1 bg-primary/10 text-black text-xs font-bold rounded-full shadow-sm">
             {event?.category}
           </span>
         </CardHeader>
@@ -59,8 +59,8 @@ const EventCard = ({ event }) => {
 
           <div className="space-y-3 mt-4">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-secondary">
-                <CalendarDays className="h-5 w-5 text-primary" />
+              <div className="p-2 rounded-lg bg-primary/10">
+                <CalendarDays className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Date</p>
@@ -69,8 +69,8 @@ const EventCard = ({ event }) => {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-secondary">
-                <MapPin className="h-5 w-5 text-primary" />
+              <div className="p-2 rounded-lg bg-primary/10">
+                <MapPin className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Location</p>
@@ -80,11 +80,11 @@ const EventCard = ({ event }) => {
           </div>
         </CardContent>
 
-        <CardFooter className="px-5 pb-5">
+        <CardFooter className="px-5">
           <Button
             asChild
             variant="outline"
-            className="w-full border-2 bg-card hover:bg-primary dark:hover:bg-primary border-primary dark:border-primary"
+            className="w-full border hover:bg-primary dark:hover:bg-primary shadow-black/30 dark:shadow-white/30 shadow-sm"
           >
             <Link to={`/event/${event?._id}`}>View Details</Link>
           </Button>

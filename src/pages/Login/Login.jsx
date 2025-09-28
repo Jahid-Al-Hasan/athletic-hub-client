@@ -79,12 +79,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-65px)]">
+    <div className="flex items-center justify-center px-4 py-24 min-h-[100vh]">
       <PageTitle title="Login" />
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Log in to your account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-xl lg:text-2xl text-center">
+            Log in to your account
+          </CardTitle>
+          <CardDescription className="text-center">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
@@ -101,7 +103,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="your@email.com"
-                className="border-primary"
+                className="shadow-black/30 dark:shadow-white/30 shadow-sm"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -118,7 +120,7 @@ const Login = () => {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="pl-10 pr-10 border-primary"
+                className="pl-10 pr-10 shadow-black/30 dark:shadow-white/30 shadow-sm"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -148,7 +150,7 @@ const Login = () => {
                 Forgot password?
               </Link>
             </Label>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full cursor-pointer">
               Login
             </Button>
           </form>
@@ -158,7 +160,7 @@ const Login = () => {
           <Button
             onClick={handleGoogleLogin}
             variant="outline"
-            className="w-full border border-primary cursor-pointer"
+            className="w-full border border-primary dark:border-white/30 cursor-pointer hover:bg-primary dark:hover:bg-white hover:text-white dark:hover:text-black"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

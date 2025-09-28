@@ -77,7 +77,7 @@ const ManageEvents = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-24">
       <PageTitle title="Manage Events" />
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between items-center mb-6">
         <h1 className="text-xl lg:text-2xl font-bold">Manage Your Events</h1>

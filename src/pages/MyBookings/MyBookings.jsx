@@ -66,7 +66,7 @@ const MyBookings = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-24 min-h-screen">
       <PageTitle title="My Bookings" />
       <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between items-start mb-6">
         <h1 className="text-xl lg:text-2xl font-bold">My Bookings</h1>
@@ -133,7 +133,7 @@ const MyBookings = () => {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <span className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                    <span className="px-2 py-1 rounded-full text-xs bg-primary/10">
                       {booking?.category}
                     </span>
                   </TableCell>
