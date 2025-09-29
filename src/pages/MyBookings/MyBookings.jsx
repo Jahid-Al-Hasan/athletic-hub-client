@@ -11,7 +11,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Trash2, Calendar, MapPin, Ticket, List, Grid } from "lucide-react";
+import {
+  Trash2,
+  Calendar,
+  MapPin,
+  Ticket,
+  List,
+  Grid,
+  FileText,
+} from "lucide-react";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -23,6 +31,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import PageTitle from "../../utils/PageTitle/PageTitle";
+import generateTicketPDF from "../../utils/GenerateTicket/GenerateTicket";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
@@ -62,6 +71,28 @@ const MyBookings = () => {
       console.error(err);
     } finally {
       setCancellingId(null);
+    }
+  };
+
+  // handle download ticket
+  const handleDownloadTicket = async (eventId, booking) => {
+    try {
+      const res = await axiosSecure.get(
+        `/tickets/${eventId}?email=${user?.email}`
+      );
+      const ticket = res.data;
+
+      if (!ticket?.qrCode) {
+        Swal.fire("No ticket found");
+        return;
+      }
+
+      const event = booking;
+      generateTicketPDF(ticket, event);
+      Swal.fire("Ticket downloaded successfully!");
+    } catch (err) {
+      Swal.fire("Failed to download ticket");
+      console.error(err);
     }
   };
 
@@ -105,6 +136,7 @@ const MyBookings = () => {
           </Button>
         </div>
       ) : viewMode === "table" ? (
+        // table view
         <div className="border rounded-lg overflow-hidden shadow-sm">
           <Table>
             <TableHeader className="bg-secondary">
@@ -137,15 +169,21 @@ const MyBookings = () => {
                       {booking?.category}
                     </span>
                   </TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className="text-center flex gap-2 justify-end">
+                    <Button
+                      size="sm"
+                      onClick={() => handleDownloadTicket(booking._id, booking)}
+                      className="cursor-pointer"
+                    >
+                      <FileText className="h-4 w-4 mr-1" />
+                      Ticket
+                    </Button>
                     <Button
                       variant="destructive"
                       size="sm"
-                      className="cursor-pointer"
-                      onClick={() => {
-                        handleCancelBooking(booking._id);
-                      }}
+                      onClick={() => handleCancelBooking(booking._id)}
                       disabled={cancellingId === booking._id}
+                      className="cursor-pointer"
                     >
                       {cancellingId === booking._id ? (
                         "Cancelling..."
@@ -163,6 +201,7 @@ const MyBookings = () => {
           </Table>
         </div>
       ) : (
+        // cared view
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {bookedEvents.map((booking) => (
             <Card
@@ -187,12 +226,21 @@ const MyBookings = () => {
                   {booking?.location}
                 </div>
               </CardContent>
-              <CardFooter className="flex justify-end">
+              <CardFooter className="flex justify-end gap-2">
+                <Button
+                  size="sm"
+                  onClick={() => handleDownloadTicket(booking._id, booking)}
+                  className="cursor-pointer"
+                >
+                  <FileText className="h-4 w-4 mr-1" />
+                  Ticket
+                </Button>
                 <Button
                   variant="destructive"
                   size="sm"
                   onClick={() => handleCancelBooking(booking._id)}
                   disabled={cancellingId === booking._id}
+                  className="cursor-pointer"
                 >
                   {cancellingId === booking._id ? (
                     "Cancelling..."

@@ -46,6 +46,7 @@ const EventDetails = () => {
           setDisableBooking(true);
           if (res?.data?.result?.modifiedCount > 0) {
             Swal.fire("Event booked successfully!");
+            navigate("/my-bookings");
           } else {
             Swal.fire("Event not updated");
           }
@@ -75,7 +76,7 @@ const EventDetails = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-24">
       <PageTitle title="Event Details" />
       <Button
         variant="outline"
@@ -150,7 +151,7 @@ const EventDetails = () => {
 
           {/* Booking Card */}
           <div className="lg:col-span-1">
-            <div className="bg-secondary rounded-lg p-6 border border-gray-200 sticky top-6">
+            <div className="rounded-lg p-6 border border-gray-200 dark:border-black/30 sticky top-6">
               <h3 className="text-xl font-semibold mb-4">Event Registration</h3>
 
               <div className="space-y-4 mb-6">
